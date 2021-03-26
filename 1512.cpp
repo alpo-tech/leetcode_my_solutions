@@ -29,49 +29,18 @@ public:
 };
 
 /*
-Before solving the question we will keep two thing in mind.
-1.The use of Vectors
-2.The use of Hashing.
-
-Here, this question can be solved by a direct formula which we will use to find the number of good pairs.
-The formula is (n*(n-1))/2.
-
-*First we find the count of number occurences of a number.
-*Then store the number count in the dictionary .
-[1,2,3,1,1,3]
-
-key - value pair
-1 : 3
-2 : 1
-3 : 2
-
-*Then we consider n = value in the hash table
-*using loop calculate the good pairs.
-
-//Program to find the number of good pairs
-//Good pairs are those in which nums[i] == nums[j] and i<j
 class Solution {
 public:
-    int numIdenticalPairs(vector<int>& nums) 
-    {
-   
-        unordered_map<int,int> umap; //Initializing a Hash Table
-         
-        for(int i=0;i<nums.size();i++) //Iterating through the vector
-        {
-            ++umap[nums[i]];  //Counting the occurences of a number and storing it in value.
-            
+    int numIdenticalPairs(vector<int> nums) {
+        unordered_map<int,int> frequency;
+        int good_pair=0;
+        for(auto num : nums){
+            if(frequency.find(num) != frequency.end()){ // if we have already seen this element such that i<j
+                good_pair+=frequency[num]; // add the number of time u have seen it
+            }
+            frequency[num]++;
         }
-        int good_pairs = 0;
-        for(auto i:umap) //Using the formula 
-        {
-            int n = i.second; //i.second implies -- value of hash table
-            good_pairs += ((n)*(n-1))/2;
-            
-        }
-        return good_pairs;
-        
-        
+        return good_pair;
     }
 };
 */
