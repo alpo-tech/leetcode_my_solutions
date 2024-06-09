@@ -67,3 +67,23 @@ func TestRomanToInt(t *testing.T) {
 		})
 	}
 }
+
+func TestLongestCommonPrefix(t *testing.T) {
+	tests := []struct {
+		input []string
+		want  string
+	}{
+		{[]string{"flower", "flow", "flight"}, "fl"},
+		{[]string{"dog", "racecar", "car"}, ""},
+		{[]string{"caca", "c", "cac"}, "c"},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.LongestCommonPrefix(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("LongestCommonPrefix(%v) = %v; want %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}

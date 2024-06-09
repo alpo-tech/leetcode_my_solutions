@@ -64,3 +64,26 @@ func RomanToInt(s string) int {
 
 	return result
 }
+
+func LongestCommonPrefix(strs []string) string {
+	commonPrefix := strs[0]
+	for _, str := range strs[1:] {
+		sizePrefix := 0
+		if len(str) > len(commonPrefix) {
+			sizePrefix = len(commonPrefix)
+		} else {
+			sizePrefix = len(str)
+			commonPrefix = commonPrefix[:sizePrefix]
+		}
+
+		for index, _ := range str[:sizePrefix] {
+			if commonPrefix[index] != str[index] {
+				commonPrefix = str[:index]
+				break
+			}
+		}
+
+	}
+
+	return commonPrefix
+}
