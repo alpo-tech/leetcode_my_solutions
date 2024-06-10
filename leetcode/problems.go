@@ -87,3 +87,33 @@ func LongestCommonPrefix(strs []string) string {
 
 	return commonPrefix
 }
+
+func ValidParentheses(str string) bool {
+
+	reverse := map[int32]int32{
+		'(': ')',
+		'[': ']',
+		'{': '}',
+	}
+
+	stack := make([]int32, 0, 10)
+
+	for _, skobka := range str {
+		if skobka == '(' || skobka == '[' || skobka == '{' {
+			stack = append(stack, skobka)
+		} else if skobka == ')' || skobka == ']' || skobka == '}' {
+			if len(stack) == 0 {
+				return false
+			}
+			last := stack[len(stack)-1]
+			if reverse[last] != skobka {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		} else {
+			return false
+		}
+	}
+
+	return len(stack) == 0
+}

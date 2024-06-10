@@ -1,9 +1,10 @@
 package test
 
 import (
-	"leetcode.com/leetcode"
 	"reflect"
 	"testing"
+
+	"leetcode.com/leetcode"
 )
 
 func TestTwoSum(t *testing.T) {
@@ -86,4 +87,27 @@ func TestLongestCommonPrefix(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestValidParentheses(t *testing.T) {
+	tests := []struct {
+		input string
+		want  bool
+	}{
+		{"()", true},
+		{"()[]{}", true},
+		{"(({{}}))", true},
+		{"(])", false},
+		{"((([)))", false},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.ValidParentheses(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ValidParentheses(%s) = %v; want %v", tt.input, got, tt.want)
+			}
+		})
+	}
+
 }
