@@ -1,8 +1,56 @@
 package leetcode
 
 import (
+	"fmt"
 	"strconv"
+	"sync"
 )
+
+type stackInt struct {
+	stack []int
+	lock  sync.RWMutex
+}
+
+func (stack *stackInt) Push(value int) {
+	stack.lock.Lock()
+	defer stack.lock.Unlock()
+	stack.stack = append(stack.stack, value)
+}
+
+func (stack *stackInt) Pop() (int, error) {
+	if stack.Size() > 0 {
+		stack.lock.Lock()
+		defer stack.lock.Unlock()
+		value := stack.stack[stack.Size()-1]
+		stack.stack = stack.stack[:stack.Size()-1]
+		return value, nil
+	}
+	return 0, fmt.Errorf("Size stack = 0")
+}
+
+func (stack *stackInt) Empty() bool {
+	return stack.Size() == 0
+}
+
+func (stack *stackInt) Front() (int, error) {
+	if stack.Size() > 0 {
+		stack.lock.Lock()
+		defer stack.lock.Unlock()
+		value := stack.stack[stack.Size()-1]
+		return value, nil
+	}
+	return 0, fmt.Errorf("Size stack = 0")
+}
+
+func (stack *stackInt) Size() int {
+	return len(stack.stack)
+}
+
+func newStack() stackInt {
+	return stackInt{
+		stack: make([]int, 0),
+	}
+}
 
 func TwoSum(nums []int, target int) []int {
 	result := make(map[int]int)
@@ -116,4 +164,45 @@ func ValidParentheses(str string) bool {
 	}
 
 	return len(stack) == 0
+}
+
+func ValidParenthesesV2(str string) bool {
+
+	customStack := newStack()
+
+	for _, value := range str {
+		switch value {
+		case '{':
+			customStack.Push(int(value))
+			break
+		case '[':
+			customStack.Push(int(value))
+			break
+		case '(':
+			customStack.Push(int(value))
+			break
+		case '}':
+			valueStack, err := customStack.Pop()
+			if err != nil || valueStack != '{' {
+				return false
+			}
+			break
+		case ']':
+			valueStack, err := customStack.Pop()
+			if err != nil || valueStack != '[' {
+				return false
+			}
+			break
+		case ')':
+			valueStack, err := customStack.Pop()
+			if err != nil || valueStack != '(' {
+				return false
+			}
+			break
+		default:
+			return false
+		}
+	}
+
+	return customStack.Empty()
 }

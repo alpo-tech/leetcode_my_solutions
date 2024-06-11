@@ -94,6 +94,7 @@ func TestValidParentheses(t *testing.T) {
 		input string
 		want  bool
 	}{
+		{"(]", false},
 		{"()", true},
 		{"()[]{}", true},
 		{"(({{}}))", true},
@@ -103,7 +104,7 @@ func TestValidParentheses(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
-			got := leetcode.ValidParentheses(tt.input)
+			got := leetcode.ValidParenthesesV2(tt.input)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ValidParentheses(%s) = %v; want %v", tt.input, got, tt.want)
 			}
