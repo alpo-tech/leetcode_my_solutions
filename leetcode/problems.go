@@ -52,6 +52,43 @@ func newStack() stackInt {
 	}
 }
 
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func printList(list *ListNode) {
+	for l := list; l != nil; l = l.Next {
+		fmt.Printf("%v -> ", l.Val)
+	}
+}
+
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	var current *ListNode
+	var result *ListNode = &ListNode{}
+	current = result
+
+	for list1 != nil && list2 != nil {
+		if list1.Val > list2.Val {
+			current.Next = list2
+			list2 = list2.Next
+		} else {
+			current.Next = list1
+			list1 = list1.Next
+		}
+
+		current = current.Next
+	}
+
+	if list1 != nil {
+		current.Next = list1
+	} else if list2 != nil {
+		current.Next = list2
+	}
+
+	return result.Next
+}
+
 func TwoSum(nums []int, target int) []int {
 	result := make(map[int]int)
 	for index, value := range nums {
