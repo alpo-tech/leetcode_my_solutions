@@ -243,3 +243,21 @@ func ValidParenthesesV2(str string) bool {
 
 	return customStack.Empty()
 }
+
+func RemoveDuplicatess(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	k := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[k] {
+			k++
+			nums[k] = nums[i]
+		} else {
+			nums[k] = nums[i]
+		}
+	}
+
+	return k + 1
+}
