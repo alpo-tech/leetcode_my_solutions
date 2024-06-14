@@ -132,3 +132,24 @@ func TestRemoveDuplicates(t *testing.T) {
 		})
 	}
 }
+
+func TestRemoveELement(t *testing.T) {
+	tests := []struct {
+		nums []int
+		val  int
+		want int
+	}{
+		{[]int{3, 2, 2, 3}, 3, 2},
+		{[]int{0, 1, 2, 2, 3, 0, 4, 2}, 2, 5},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.RemoveElement(tt.nums, tt.val)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("RemoveElemnet(%v) = %v; want %v", tt.nums, got, tt.want)
+			}
+		})
+	}
+
+}

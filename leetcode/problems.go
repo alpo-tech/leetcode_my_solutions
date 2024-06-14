@@ -261,3 +261,17 @@ func RemoveDuplicatess(nums []int) int {
 
 	return k + 1
 }
+
+func RemoveElement(nums []int, val int) int {
+	len := len(nums)
+	count := 0
+
+	for i := 0; i < len; i++ {
+		if nums[i] != val {
+			nums[count] = nums[i]
+			count++
+		}
+	}
+
+	return len - (len - count)
+}
