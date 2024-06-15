@@ -3,6 +3,7 @@ package leetcode
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -274,4 +275,48 @@ func RemoveElement(nums []int, val int) int {
 	}
 
 	return len - (len - count)
+}
+
+func strStrSample(haystack string, needle string) int {
+	return strings.Index(haystack, needle)
+}
+
+func StrStr(haystack string, needle string) int {
+	// O(N)
+	prefix := make([]int, len(needle))
+	j := 0
+	for i := 1; i < len(needle); {
+		if needle[i] == needle[j] {
+			prefix[i] = j + 1
+			i++
+			j++
+		} else {
+			if j == 0 {
+				prefix[i] = 0
+				i++
+			} else {
+				j = prefix[j-1]
+			}
+		}
+	}
+
+	k := 0
+	l := 0
+	for k < len(haystack) {
+		if haystack[k] == needle[l] {
+			k++
+			l++
+			if l == len(needle) {
+				return k - l
+			}
+		} else {
+			if l == 0 {
+				k++
+			} else {
+				l = prefix[l-1]
+			}
+		}
+	}
+
+	return -1
 }

@@ -151,5 +151,25 @@ func TestRemoveELement(t *testing.T) {
 			}
 		})
 	}
+}
 
+func TestStrStr(t *testing.T) {
+	tests := []struct {
+		str    string
+		substr string
+		want   int
+	}{
+		{"sadbutsad", "sad", 0},
+		{"leetcode", "leeto", -1},
+		{"abcabd", "abcabd", 0},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.StrStr(tt.str, tt.substr)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("StrStr(%v. %v) = %v; want %v", tt.str, tt.substr, got, tt.want)
+			}
+		})
+	}
 }
