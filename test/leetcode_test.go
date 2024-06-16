@@ -173,3 +173,27 @@ func TestStrStr(t *testing.T) {
 		})
 	}
 }
+
+func TestSearchInsertPosition(t *testing.T) {
+	tests := []struct {
+		input  []int
+		target int
+		want   int
+	}{
+		{[]int{1, 3, 5, 6}, 5, 2},
+		{[]int{1, 3, 5, 6}, 2, 1},
+		{[]int{1}, 2, 1},
+		{[]int{1}, 0, 0},
+
+		{[]int{1, 3, 5, 6}, 7, 4},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.SearchInsertPosition(tt.input, tt.target)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("SearchInsertPosition(%v, %v) = %v; want %v", tt.input, tt.target, got, tt.want)
+			}
+		})
+	}
+}
