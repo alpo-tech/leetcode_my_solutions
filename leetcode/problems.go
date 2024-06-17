@@ -339,3 +339,18 @@ func SearchInsertPosition(nums []int, target int) int {
 	// В этом месте left будет индексом, на который нужно вставить target
 	return left
 }
+
+func LenghtOfLastWord(s string) int {
+	result := 0
+
+	for index := len(s) - 1; index >= 0; index-- {
+		if s[index] == 32 {
+			if result != 0 {
+				break
+			}
+		} else {
+			result++
+		}
+	}
+	return result
+}

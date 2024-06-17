@@ -197,3 +197,26 @@ func TestSearchInsertPosition(t *testing.T) {
 		})
 	}
 }
+
+func TestLengthOfLastWord(t *testing.T)  {
+	tests := []struct {
+		input	string
+		want	int
+	} {
+		{"Hello World", 5},
+		{"   fly me   to   the moon  ", 4},
+		{"luffy is still joyboy", 6},
+		{"world      ", 5},  
+		{"         world", 5},
+		{"world", 5},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T){
+			got := leetcode.LenghtOfLastWord(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("LengOfLastWord(%v) = %v; want = %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
