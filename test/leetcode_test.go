@@ -198,24 +198,44 @@ func TestSearchInsertPosition(t *testing.T) {
 	}
 }
 
-func TestLengthOfLastWord(t *testing.T)  {
+func TestLengthOfLastWord(t *testing.T) {
 	tests := []struct {
-		input	string
-		want	int
-	} {
+		input string
+		want  int
+	}{
 		{"Hello World", 5},
 		{"   fly me   to   the moon  ", 4},
 		{"luffy is still joyboy", 6},
-		{"world      ", 5},  
+		{"world      ", 5},
 		{"         world", 5},
 		{"world", 5},
 	}
 
 	for _, tt := range tests {
-		t.Run("", func(t *testing.T){
+		t.Run("", func(t *testing.T) {
 			got := leetcode.LenghtOfLastWord(tt.input)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("LengOfLastWord(%v) = %v; want = %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPlusOne(t *testing.T) {
+	tests := []struct {
+		input []int
+		want  []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 4}},
+		{[]int{4, 3, 2, 1}, []int{4, 3, 2, 2}},
+		{[]int{9}, []int{1, 0}},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.PlusOne(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("PlusOne(%v) = %v; want = %v", tt.input, got, tt.want)
 			}
 		})
 	}

@@ -354,3 +354,26 @@ func LenghtOfLastWord(s string) int {
 	}
 	return result
 }
+func PlusOne(digits []int) []int {
+	result := make([]int, len(digits)+1)
+	value := 1
+	for i := len(digits) - 1; i >= 0; i-- {
+
+		value += digits[i]
+
+		if value >= 10 {
+			result[i+1] = value - 10
+			value = 1
+		} else {
+			result[i+1] = value
+			value = 0
+		}
+	}
+
+	if value > 0 {
+		result[0] = value
+	} else {
+		result = result[1:]
+	}
+	return result
+}

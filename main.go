@@ -28,5 +28,4 @@ func binaryInsert(nums []int, target int) int {
 
 func main() {
 
-
 }
