@@ -260,3 +260,24 @@ func TestAddBinary(t *testing.T) {
 		})
 	}
 }
+
+func TestMySqrt(t *testing.T) {
+	tests := []struct {
+		input int
+		want  int
+	}{
+		{4, 2},
+		{8, 2},
+		{0, 0},
+		{1, 1},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.MySqrt(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MySqrt(%v) = %v; want = %v", tt.want, got, tt.want)
+			}
+		})
+	}
+}
