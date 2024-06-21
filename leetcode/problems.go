@@ -453,3 +453,36 @@ func MySqrt(x int) int {
 	}
 	return 0
 }
+
+func ClimbingsStairsReqursive(n int) int {
+	if n == 1 {
+		return 1
+	}
+	if n == 2 {
+		return 2
+	}
+	return ClimbingsStairsReqursive(n-1) + ClimbingsStairsReqursive(n-2)
+}
+
+func ClimbingsStairsIter(n int) int {
+	if n == 1 {
+		return 1
+	}
+	if n == 2 {
+		return 2
+	}
+
+	result_one := 2
+	result_two := 1
+
+	result := result_two + result_one
+
+	for i := 3; i < n; i++ {
+		result_two = result_one
+		result_one = result
+		result = result_two + result_one
+
+	}
+
+	return result
+}
