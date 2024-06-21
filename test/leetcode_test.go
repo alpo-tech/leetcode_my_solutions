@@ -281,3 +281,28 @@ func TestMySqrt(t *testing.T) {
 		})
 	}
 }
+
+func TestClimbingsStairs(t *testing.T) {
+	tests := []struct {
+		input int
+		want  int
+	}{
+		{2, 2},
+		{3, 3},
+		{4, 5},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.ClimbingsStairsReqursive(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ClimbingStartsReq(%v) = %v; want = %v", tt.want, got, tt.want)
+			}
+
+			got = leetcode.ClimbingsStairsIter(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ClimbingStartsIter(%v) = %v; want = %v", tt.want, got, tt.want)
+			}
+		})
+	}
+}
