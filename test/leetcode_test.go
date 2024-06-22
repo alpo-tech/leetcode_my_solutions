@@ -306,3 +306,7 @@ func TestClimbingsStairs(t *testing.T) {
 		})
 	}
 }
+
+func TestRemoveDuplicateFromSortedList(t *testing.T) {
+
+}

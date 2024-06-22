@@ -66,7 +66,7 @@ func printList(list *ListNode) {
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	var current *ListNode
-	var result *ListNode = &ListNode{}
+	var result = &ListNode{}
 	current = result
 
 	for list1 != nil && list2 != nil {
@@ -485,4 +485,21 @@ func ClimbingsStairsIter(n int) int {
 	}
 
 	return result
+}
+
+func deleteDuplicates(head *ListNode) *ListNode {
+	var result = &ListNode{}
+	current := result
+	current.Val = -101
+	for head != nil {
+		if head.Val != current.Val {
+			current.Next = head
+			current = current.Next
+		}
+		head = head.Next
+	}
+
+	current.Next = nil
+
+	return result.Next
 }
