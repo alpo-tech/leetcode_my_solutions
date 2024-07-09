@@ -1,31 +1,15 @@
 package main
 
-import (
-	"fmt"
-)
-
-func binaryInsert(nums []int, target int) int {
-	left := 0
-	right := len(nums) - 1
-
-	for left <= right {
-		fmt.Printf("left =%v, right =%v\n", left, right)
-
-		median := (right + left) / 2
-
-		if nums[median] == target {
-			return median
-		}
-
-		if nums[median] < target {
-			left = median + 1
-		} else if nums[median] > target {
-			right = median - 1
-		}
-	}
-	return 0
-}
+import "fmt"
 
 func main() {
+	slice := []int{1, 2, 3, 4, 5}
+	fmt.Println(slice)
+	testSlice(slice)
+	fmt.Println(slice)
+}
 
+func testSlice(slice []int) {
+	slice[0] = 5
+	slice[4] = 1
 }

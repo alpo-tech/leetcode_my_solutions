@@ -64,6 +64,46 @@ func printList(list *ListNode) {
 	}
 }
 
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func inorderTraversal(root *TreeNode) []int {
+	var nums = []int{}
+	if root == nil {
+		return nums
+	}
+
+	nums = append(nums, inorderTraversal(root.Left)...)
+	nums = append(nums, root.Val)
+	nums = append(nums, inorderTraversal(root.Right)...)
+	return nums
+}
+
+func helperInorderTraversalReq(root *TreeNode, nums []int) {
+	if root == nil {
+		return
+	}
+	nums = append(nums, root.Val)
+}
+
+func InorderTraversalReqursive(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	nums := make([]int, 10)
+	helperInorderTraversalReq(root.Left, nums)
+	helperInorderTraversalReq(root, nums)
+	helperInorderTraversalReq(root.Right, nums)
+	return nums
+}
+
+func InorderTraversalIter(root *TreeNode) []int {
+
+}
+
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	var current *ListNode
 	var result = &ListNode{}

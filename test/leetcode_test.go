@@ -333,3 +333,11 @@ func TestMergeSortedArray(t *testing.T) {
 		})
 	}
 }
+
+//func TestInorderTraversal(t *testing.T) {
+//	//how make treenode for tests ??
+//	tests := struct {
+//		input *leetcode.TreeNode
+//		want  []int
+//	}{}
+//}
