@@ -82,21 +82,21 @@ func inorderTraversal(root *TreeNode) []int {
 	return nums
 }
 
-func helperInorderTraversalReq(root *TreeNode, nums []int) {
+func helperInorderTraversalReq(root *TreeNode, nums *[]int) {
 	if root == nil {
 		return
 	}
-	nums = append(nums, root.Val)
+	helperInorderTraversalReq(root.Left, nums)
+	*nums = append(*nums, root.Val)
+	helperInorderTraversalReq(root.Right, nums)
 }
 
-func InorderTraversalReqursive(root *TreeNode) []int {
+func inorderTraversalReq(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
-	nums := make([]int, 10)
-	helperInorderTraversalReq(root.Left, nums)
-	helperInorderTraversalReq(root, nums)
-	helperInorderTraversalReq(root.Right, nums)
+	nums := make([]int, 0)
+	helperInorderTraversalReq(root, &nums)
 	return nums
 }
 
