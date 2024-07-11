@@ -53,83 +53,6 @@ func newStack() stackInt {
 	}
 }
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func printList(list *ListNode) {
-	for l := list; l != nil; l = l.Next {
-		fmt.Printf("%v -> ", l.Val)
-	}
-}
-
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
-func inorderTraversal(root *TreeNode) []int {
-	var nums = []int{}
-	if root == nil {
-		return nums
-	}
-
-	nums = append(nums, inorderTraversal(root.Left)...)
-	nums = append(nums, root.Val)
-	nums = append(nums, inorderTraversal(root.Right)...)
-	return nums
-}
-
-func helperInorderTraversalReq(root *TreeNode, nums *[]int) {
-	if root == nil {
-		return
-	}
-	helperInorderTraversalReq(root.Left, nums)
-	*nums = append(*nums, root.Val)
-	helperInorderTraversalReq(root.Right, nums)
-}
-
-func inorderTraversalReq(root *TreeNode) []int {
-	if root == nil {
-		return []int{}
-	}
-	nums := make([]int, 0)
-	helperInorderTraversalReq(root, &nums)
-	return nums
-}
-
-func InorderTraversalIter(root *TreeNode) []int {
-
-}
-
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	var current *ListNode
-	var result = &ListNode{}
-	current = result
-
-	for list1 != nil && list2 != nil {
-		if list1.Val > list2.Val {
-			current.Next = list2
-			list2 = list2.Next
-		} else {
-			current.Next = list1
-			list1 = list1.Next
-		}
-
-		current = current.Next
-	}
-
-	if list1 != nil {
-		current.Next = list1
-	} else if list2 != nil {
-		current.Next = list2
-	}
-
-	return result.Next
-}
-
 func TwoSum(nums []int, target int) []int {
 	result := make(map[int]int)
 	for index, value := range nums {
@@ -527,23 +450,6 @@ func ClimbingsStairsIter(n int) int {
 	return result
 }
 
-func deleteDuplicates(head *ListNode) *ListNode {
-	var result = &ListNode{}
-	current := result
-	current.Val = -101
-	for head != nil {
-		if head.Val != current.Val {
-			current.Next = head
-			current = current.Next
-		}
-		head = head.Next
-	}
-
-	current.Next = nil
-
-	return result.Next
-}
-
 func MergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 
 	i := m - 1 // nums1 iter
@@ -566,5 +472,32 @@ func MergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 				j--
 			}
 		}
+	}
+}
+
+func ReverseParentheses(s string) string {
+	var stack [][]byte
+	var top []byte
+	stack = append(stack, []byte{}) // Initial segment in case we have any before the first parentheses
+	for i := 0; i < len(s); i++ {
+		if s[i] == '(' { // start the next segment
+			stack = append(stack, []byte{})
+		} else if s[i] == ')' { // end of a segment; pop it, reverse it, and append it to the previous segment
+			top, stack = stack[len(stack)-1], stack[:len(stack)-1]
+			rev(top)
+			stack[len(stack)-1] = append(stack[len(stack)-1], top...)
+		} else { // append to current segment
+			stack[len(stack)-1] = append(stack[len(stack)-1], s[i])
+		}
+	}
+	return string(stack[0])
+}
+
+func rev(seg []byte) {
+	i, j := 0, len(seg)-1
+	for i < j {
+		seg[i], seg[j] = seg[j], seg[i]
+		i++
+		j--
 	}
 }

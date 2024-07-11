@@ -334,6 +334,26 @@ func TestMergeSortedArray(t *testing.T) {
 	}
 }
 
+func TestReverseParenthese(t *testing.T) {
+	tests := []struct {
+		input string
+		want  string
+	}{
+		{"(abcd)", "dcba"},
+		{"(u(love)i)", "iloveu"},
+		{"(ed(et(oc))el)", "leetcode"},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.ReverseParentheses(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ReverseParenthese(%v) = %v; want = %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
+
 //func TestInorderTraversal(t *testing.T) {
 //	//how make treenode for tests ??
 //	tests := struct {
