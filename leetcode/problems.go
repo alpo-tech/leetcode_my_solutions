@@ -475,6 +475,7 @@ func MergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 	}
 }
 
+// TODO: реализовать самостоятельно
 func ReverseParentheses(s string) string {
 	var stack [][]byte
 	var top []byte
