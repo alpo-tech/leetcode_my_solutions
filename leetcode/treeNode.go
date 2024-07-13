@@ -1,5 +1,7 @@
 package leetcode
 
+import "math"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -78,4 +80,21 @@ func IsSymmetricHelper(right *TreeNode, left *TreeNode) bool {
 
 func isSymmetric(root *TreeNode) bool {
 	return IsSymmetricHelper(root.Right, root.Left)
+}
+
+func maxDepthHelper(root *TreeNode, step int) int {
+	if root == nil {
+		return step
+	}
+
+	return int(math.Max(float64(maxDepthHelper(root.Right, step+1)), float64(maxDepthHelper(root.Left, step+1))))
+}
+
+func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	leftStep := maxDepthHelper(root.Left, 1)
+	rightStep := maxDepthHelper(root.Right, 1)
+	return int(math.Max(float64(leftStep), float64(rightStep)))
 }
