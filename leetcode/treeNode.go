@@ -8,16 +8,36 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func inorderTraversal(root *TreeNode) []int {
-	var nums = []int{}
-	if root == nil {
-		return nums
+func CreateTreeNode(array []*int) *TreeNode {
+	if len(array) == 0 || array[0] == nil {
+		return nil
 	}
 
-	nums = append(nums, inorderTraversal(root.Left)...)
-	nums = append(nums, root.Val)
-	nums = append(nums, inorderTraversal(root.Right)...)
-	return nums
+	root := &TreeNode{Val: *array[0]}
+	queue := []*TreeNode{root}
+	i := 1
+
+	for i < len(array) {
+		current := queue[0]
+		queue = queue[1:]
+
+		if i < len(array) && array[i] != nil {
+			current.Left = &TreeNode{Val: *array[i]}
+			queue = append(queue, current.Left)
+		}
+		i++
+
+		if i < len(array) && array[i] != nil {
+			current.Right = &TreeNode{Val: *array[i]}
+			queue = append(queue, current.Right)
+		}
+		i++
+	}
+	return root
+}
+
+func IntPtr(i int) *int {
+	return &i
 }
 
 func helperInorderTraversalReq(root *TreeNode, nums *[]int) {
@@ -29,7 +49,7 @@ func helperInorderTraversalReq(root *TreeNode, nums *[]int) {
 	helperInorderTraversalReq(root.Right, nums)
 }
 
-func inorderTraversalReq(root *TreeNode) []int {
+func InorderTraversalReq(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
@@ -38,6 +58,7 @@ func inorderTraversalReq(root *TreeNode) []int {
 	return nums
 }
 
+// TODO: реализовать прямоц обход дерева с помощью итерации
 func InorderTraversalIter(root *TreeNode) []int {
 	return []int{}
 }

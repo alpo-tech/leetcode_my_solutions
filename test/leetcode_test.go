@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -354,10 +355,32 @@ func TestReverseParenthese(t *testing.T) {
 	}
 }
 
-//func TestInorderTraversal(t *testing.T) {
-//	//how make treenode for tests ??
-//	tests := struct {
-//		input *leetcode.TreeNode
-//		want  []int
-//	}{}
-//}
+func TestInorderTraversal(t *testing.T) {
+	input1 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(1),
+		nil,
+		leetcode.IntPtr(2),
+		leetcode.IntPtr(3),
+	})
+
+	input2 := leetcode.CreateTreeNode([]*int{})
+
+	input3 := leetcode.CreateTreeNode([]*int{leetcode.IntPtr(1)})
+
+	tests := []struct {
+		input *leetcode.TreeNode
+		want  []int
+	}{
+		{input1, []int{1, 3, 2, 4}},
+		{input2, []int{}},
+		{input3, []int{1}},
+	}
+
+	for _, tt := range tests {
+		got := leetcode.InorderTraversalReq(tt.input)
+		fmt.Printf("InorderTraversalReq(%v) = %v = %v\n", tt.input, got, tt.want)
+		if !reflect.DeepEqual(got, tt.want) {
+			fmt.Errorf("InorderTraversalReq(%v) = %v; want = %v", tt.input, got, tt.want)
+		}
+	}
+}
