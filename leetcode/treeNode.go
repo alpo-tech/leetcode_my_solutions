@@ -119,3 +119,14 @@ func maxDepth(root *TreeNode) int {
 	rightStep := maxDepthHelper(root.Right, 1)
 	return int(math.Max(float64(leftStep), float64(rightStep)))
 }
+
+func SortedArrayToBst(nums []int) *TreeNode {
+	if len(nums) == 0 {
+		return nil
+	}
+	middle := len(nums) / 2
+	root := &TreeNode{Val: nums[middle]}
+	root.Left = SortedArrayToBst(nums[:middle])
+	root.Right = SortedArrayToBst(nums[middle+1:])
+	return root
+}

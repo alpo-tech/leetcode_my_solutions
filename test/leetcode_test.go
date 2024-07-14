@@ -384,3 +384,7 @@ func TestInorderTraversal(t *testing.T) {
 		}
 	}
 }
+
+func TestSortedArrayToBST(t *testing.T) {
+
+}
