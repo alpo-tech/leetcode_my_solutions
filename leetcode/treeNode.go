@@ -133,10 +133,22 @@ func SortedArrayToBst(nums []int) *TreeNode {
 	return root
 }
 
-func IsBalanced(root *TreeNode) bool {
+func dfs(root *TreeNode) (bool, int) {
 	if root == nil {
-		return true
+		return true, 0
 	}
-	result := MaxDepth(root.Left) - MaxDepth(root.Right)
-	return math.Abs(float64(result)) <= 1
+
+	isLeftBalanced, leftHeight := dfs(root.Left)
+	isRightBalanced, rightHeight := dfs(root.Right)
+
+	diff := math.Abs(float64(leftHeight - rightHeight))
+	if isLeftBalanced && isRightBalanced && diff <= 1 {
+		return true, 1 + int(math.Max(float64(leftHeight), float64(rightHeight)))
+	}
+	return false, -1
+}
+
+func IsBalanced(root *TreeNode) bool {
+	res, _ := dfs(root)
+	return res
 }

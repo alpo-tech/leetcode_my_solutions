@@ -423,3 +423,35 @@ func TestMaxDepth(t *testing.T) {
 func TestSortedArrayToBST(t *testing.T) {
 
 }
+
+func TestIsBalanced(t *testing.T) {
+	input1 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(1),
+		leetcode.IntPtr(2),
+		leetcode.IntPtr(2),
+		leetcode.IntPtr(3),
+		nil,
+		nil,
+		leetcode.IntPtr(3),
+		leetcode.IntPtr(4),
+		nil,
+		nil,
+		leetcode.IntPtr(4),
+	})
+
+	tests := []struct {
+		input *leetcode.TreeNode
+		want  bool
+	}{
+		{input1, false},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.IsBalanced(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("IsBalanced(%v)=%v want=%v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
