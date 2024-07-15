@@ -1,7 +1,6 @@
 package test
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -377,11 +376,47 @@ func TestInorderTraversal(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		got := leetcode.InorderTraversalReq(tt.input)
-		fmt.Printf("InorderTraversalReq(%v) = %v = %v\n", tt.input, got, tt.want)
-		if !reflect.DeepEqual(got, tt.want) {
-			fmt.Errorf("InorderTraversalReq(%v) = %v; want = %v", tt.input, got, tt.want)
-		}
+		t.Run("", func(t *testing.T) {
+			got := leetcode.InorderTraversalReq(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("InorderTraversalReq(%v) = %v; want = %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMaxDepth(t *testing.T) {
+	input1 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(3),
+		leetcode.IntPtr(9),
+		leetcode.IntPtr(20),
+		nil,
+		nil,
+		leetcode.IntPtr(15),
+		leetcode.IntPtr(7),
+	})
+
+	input2 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(1),
+		nil,
+		leetcode.IntPtr(2),
+	})
+
+	tests := []struct {
+		input *leetcode.TreeNode
+		want  int
+	}{
+		{input1, 3},
+		{input2, 2},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.MaxDepth(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MaxDepth(%v) = %v, want = %v", tt.input, got, tt.want)
+			}
+		})
 	}
 }
 

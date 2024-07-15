@@ -1,6 +1,8 @@
 package leetcode
 
-import "math"
+import (
+	"math"
+)
 
 type TreeNode struct {
 	Val   int
@@ -63,7 +65,7 @@ func InorderTraversalIter(root *TreeNode) []int {
 	return []int{}
 }
 
-func IsSameTreeHelper(p *TreeNode, q *TreeNode) bool {
+func IsSameHelper(p *TreeNode, q *TreeNode) bool {
 	if p == nil && q == nil {
 		return true
 	}
@@ -76,11 +78,11 @@ func IsSameTreeHelper(p *TreeNode, q *TreeNode) bool {
 		return false
 	}
 
-	return IsSameTreeHelper(p.Right, q.Right) && IsSameTreeHelper(p.Left, q.Left)
+	return IsSameHelper(p.Right, q.Right) && IsSameHelper(p.Left, q.Left)
 }
 
-func IsSameTree(p *TreeNode, q *TreeNode) bool {
-	return IsSameTreeHelper(p, q)
+func IsSame(p *TreeNode, q *TreeNode) bool {
+	return IsSameHelper(p, q)
 }
 
 func IsSymmetricHelper(right *TreeNode, left *TreeNode) bool {
@@ -111,7 +113,7 @@ func maxDepthHelper(root *TreeNode, step int) int {
 	return int(math.Max(float64(maxDepthHelper(root.Right, step+1)), float64(maxDepthHelper(root.Left, step+1))))
 }
 
-func maxDepth(root *TreeNode) int {
+func MaxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -129,4 +131,12 @@ func SortedArrayToBst(nums []int) *TreeNode {
 	root.Left = SortedArrayToBst(nums[:middle])
 	root.Right = SortedArrayToBst(nums[middle+1:])
 	return root
+}
+
+func IsBalanced(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	result := MaxDepth(root.Left) - MaxDepth(root.Right)
+	return math.Abs(float64(result)) <= 1
 }
