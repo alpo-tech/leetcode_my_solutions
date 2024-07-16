@@ -152,3 +152,55 @@ func IsBalanced(root *TreeNode) bool {
 	res, _ := dfs(root)
 	return res
 }
+
+func min(a int, b int) int {
+	if a > b {
+		return b
+	}
+
+	return a
+}
+
+func MinDepthHelper(root *TreeNode, step int) (int, bool) {
+	if root == nil {
+		return step, false
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return step + 1, true
+	}
+
+	minLeft, okLeft := MinDepthHelper(root.Left, step+1)
+	minRight, okRight := MinDepthHelper(root.Right, step+1)
+
+	if okLeft && okRight {
+		return min(minLeft, minRight), true
+	}
+
+	if okLeft {
+		return minLeft, true
+	}
+
+	return minRight, true
+
+}
+
+func MinDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	minLeft, okLeft := MinDepthHelper(root.Left, 1)
+	minRight, okRight := MinDepthHelper(root.Right, 1)
+
+	if okLeft && okRight {
+		return min(minLeft, minRight)
+	}
+
+	if okLeft {
+		return minLeft
+	}
+
+	return minRight
+
+}

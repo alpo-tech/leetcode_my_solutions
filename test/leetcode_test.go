@@ -455,3 +455,45 @@ func TestIsBalanced(t *testing.T) {
 		})
 	}
 }
+
+func TestMinDepth(t *testing.T) {
+	input1 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(3),
+		leetcode.IntPtr(9),
+		leetcode.IntPtr(20),
+		nil,
+		nil,
+		leetcode.IntPtr(15),
+		leetcode.IntPtr(7),
+	})
+
+	input2 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(2),
+		nil,
+		leetcode.IntPtr(3),
+		nil,
+		leetcode.IntPtr(4),
+		nil,
+		leetcode.IntPtr(5),
+		nil,
+		leetcode.IntPtr(6),
+	}) 
+
+	tests := []struct{
+		input	*leetcode.TreeNode
+		want	int
+	}{
+		{input1, 2},
+		{input2, 5},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T){
+			got := leetcode.MinDepth(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MinDepth(%v)=%v want %v", tt.input, got, tt.want)
+			}
+		})	
+	}
+	
+}
