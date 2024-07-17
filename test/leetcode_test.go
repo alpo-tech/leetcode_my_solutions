@@ -520,6 +520,17 @@ func TestHasPathSum(t *testing.T) {
 		leetcode.IntPtr(3),
 	})
 
+	input3 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(1),
+		leetcode.IntPtr(-2),
+		leetcode.IntPtr(-3),
+		leetcode.IntPtr(1),
+		leetcode.IntPtr(3),
+		leetcode.IntPtr(-2),
+		nil,
+		leetcode.IntPtr(-1),
+	})
+
 	tests := []struct {
 		input     *leetcode.TreeNode
 		targetSum int
@@ -527,6 +538,7 @@ func TestHasPathSum(t *testing.T) {
 	}{
 		{input1, 22, true},
 		{input2, 5, false},
+		{input3, -1, true},
 	}
 
 	for _, tt := range tests {
