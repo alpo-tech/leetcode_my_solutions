@@ -204,3 +204,15 @@ func MinDepth(root *TreeNode) int {
 	return minRight
 
 }
+
+func HasPathSum(root *TreeNode, targetSum int) bool {
+	if root == nil || targetSum == 0 {
+		return false
+	}
+
+	if root.Left == nil && root.Right == nil && targetSum - root.Val == 0 {
+		return true
+	}
+
+	return HasPathSum(root.Left, targetSum - root.Val) || HasPathSum(root.Right, targetSum - root.Val)
+}

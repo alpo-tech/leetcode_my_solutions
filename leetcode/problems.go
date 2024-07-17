@@ -125,7 +125,7 @@ func LongestCommonPrefix(strs []string) string {
 			commonPrefix = commonPrefix[:sizePrefix]
 		}
 
-		for index, _ := range str[:sizePrefix] {
+		for index := range str[:sizePrefix] {
 			if commonPrefix[index] != str[index] {
 				commonPrefix = str[:index]
 				break
@@ -169,6 +169,7 @@ func ValidParentheses(str string) bool {
 
 func ValidParenthesesV2(str string) bool {
 
+	fmt.Println("test")
 	customStack := newStack()
 
 	for _, value := range str {

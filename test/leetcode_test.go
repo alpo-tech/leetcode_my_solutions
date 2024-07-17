@@ -477,23 +477,64 @@ func TestMinDepth(t *testing.T) {
 		leetcode.IntPtr(5),
 		nil,
 		leetcode.IntPtr(6),
-	}) 
+	})
 
-	tests := []struct{
-		input	*leetcode.TreeNode
-		want	int
+	tests := []struct {
+		input *leetcode.TreeNode
+		want  int
 	}{
 		{input1, 2},
 		{input2, 5},
 	}
 
 	for _, tt := range tests {
-		t.Run("", func(t *testing.T){
+		t.Run("", func(t *testing.T) {
 			got := leetcode.MinDepth(tt.input)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("MinDepth(%v)=%v want %v", tt.input, got, tt.want)
 			}
-		})	
+		})
 	}
-	
+
+}
+
+func TestHasPathSum(t *testing.T) {
+	input1 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(5),
+		leetcode.IntPtr(4),
+		leetcode.IntPtr(8),
+		leetcode.IntPtr(11),
+		nil,
+		leetcode.IntPtr(13),
+		leetcode.IntPtr(4),
+		leetcode.IntPtr(7),
+		leetcode.IntPtr(2),
+		nil,
+		nil,
+		nil,
+		leetcode.IntPtr(1),
+	})
+	input2 := leetcode.CreateTreeNode([]*int{
+		leetcode.IntPtr(1),
+		leetcode.IntPtr(2),
+		leetcode.IntPtr(3),
+	})
+
+	tests := []struct {
+		input     *leetcode.TreeNode
+		targetSum int
+		want      bool
+	}{
+		{input1, 22, true},
+		{input2, 5, false},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.HasPathSum(tt.input, tt.targetSum)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("HasPathSum(%v, %v) = %v, want = %v", tt.input, tt.targetSum, got, tt.want)
+			}
+		})
+	}
 }
