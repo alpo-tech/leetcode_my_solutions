@@ -503,3 +503,37 @@ func rev(seg []byte) {
 		j--
 	}
 }
+
+func GenerageTrianglePascal(numsRows int) [][]int {
+
+	arrayLine := make([][]int, 0)
+
+	for i := 0; i < numsRows; i++ {
+		if i == 0 {
+			arrayLine = append(arrayLine, []int{1})
+			continue
+		}
+
+		line := make([]int, 0)
+		for j := 0; j <= i; j++ {
+
+			first := 0
+			if j-1 >= 0 {
+				first = arrayLine[i-1][j-1]
+			}
+
+			second := 0
+			if len(arrayLine[i-1]) > j {
+				second = arrayLine[i-1][j]
+			}
+
+			line = append(line, first+second)
+
+		}
+
+		arrayLine = append(arrayLine, line)
+	}
+
+	return arrayLine
+
+}

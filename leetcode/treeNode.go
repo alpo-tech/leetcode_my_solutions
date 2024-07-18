@@ -85,6 +85,8 @@ func IsSame(p *TreeNode, q *TreeNode) bool {
 	return IsSameHelper(p, q)
 }
 
+// this is test
+
 func IsSymmetricHelper(right *TreeNode, left *TreeNode) bool {
 	if left == nil && right == nil {
 		return true
