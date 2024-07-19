@@ -515,21 +515,19 @@ func GenerageTrianglePascal(numsRows int) [][]int {
 		}
 
 		line := make([]int, 0)
-		for j := 0; j <= i; j++ {
 
-			first := 0
-			if j-1 >= 0 {
-				first = arrayLine[i-1][j-1]
-			}
+		line = append(line, 1)
 
-			second := 0
-			if len(arrayLine[i-1]) > j {
-				second = arrayLine[i-1][j]
-			}
+		for j := 1; j < i; j++ {
+
+			first := arrayLine[i-1][j-1]
+
+			second := arrayLine[i-1][j]
 
 			line = append(line, first+second)
-
 		}
+
+		line = append(line, 1)
 
 		arrayLine = append(arrayLine, line)
 	}
