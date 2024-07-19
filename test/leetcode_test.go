@@ -569,3 +569,23 @@ func TestGenerageTrianglePascal(t *testing.T) {
 		})
 	}
 }
+
+func TestGetRowTriangelPascal(t *testing.T) {
+	tests := []struct {
+		input int
+		want  []int
+	}{
+		{3, []int{1, 3, 3, 1}},
+		{0, []int{1}},
+		{1, []int{1, 1}},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.GetRowTriangelPascalReqursive(tt.input)
+			if !reflect.DeepEqual(tt.want, got) {
+				t.Errorf("GetRowTriangelPascal(%v) = %v, want %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}

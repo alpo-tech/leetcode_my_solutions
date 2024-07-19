@@ -535,3 +535,24 @@ func GenerageTrianglePascal(numsRows int) [][]int {
 	return arrayLine
 
 }
+
+func GetRowTriangelPascalReqursive(rowIndex int) []int {
+	if rowIndex == 0 {
+		return []int{1}
+	}
+
+	prevRow := GetRowTriangelPascalReqursive(rowIndex - 1)
+
+	currentRow := make([]int, len(prevRow)+1)
+
+	currentRow[0] = 1
+
+	for i := 1; i < len(prevRow); i++ {
+		currentRow[i] = prevRow[i-1] + prevRow[i]
+	}
+
+	currentRow[len(prevRow)] = 1
+
+	return currentRow
+
+}
