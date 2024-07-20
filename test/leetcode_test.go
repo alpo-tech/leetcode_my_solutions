@@ -589,3 +589,22 @@ func TestGetRowTriangelPascal(t *testing.T) {
 		})
 	}
 }
+
+func TestMaxProfit(t *testing.T) {
+	tests := []struct {
+		input []int
+		want  int
+	}{
+		{[]int{7, 1, 5, 3, 6, 4}, 5},
+		{[]int{7, 6, 4, 3, 1}, 0},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.MaxProfixBruteForce_121(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MaxProfitBruteForce(%v)=%v, want %v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
