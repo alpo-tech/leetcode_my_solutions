@@ -576,3 +576,53 @@ func MaxProfixBruteForce_121(prices []int) int {
 	return profit
 
 }
+
+func isLetterOrNumber(s byte) (bool, byte) {
+	if s >= 65 && s <= 90 {
+		return true, s + 32
+	}
+
+	if s >= 97 && s <= 122 {
+		return true, s
+	}
+
+	if s >= 48 && s <= 57 {
+		return true, s
+	}
+
+	return false, 0
+}
+
+func IsPalindromeString_125(s string) bool {
+	begin := 0
+	end := len(s) - 1
+	result := true
+
+	for begin <= end {
+		begin_bool, begin_letter := isLetterOrNumber(s[begin])
+		end_bool, end_letter := isLetterOrNumber(s[end])
+
+		if begin_bool == end_bool {
+			if begin_letter != end_letter {
+				return false
+			}
+			end--
+			begin++
+			continue
+		}
+
+		if !begin_bool {
+			begin++
+			continue
+		}
+
+		if !end_bool {
+			end--
+			continue
+		}
+
+	}
+
+	return result
+
+}

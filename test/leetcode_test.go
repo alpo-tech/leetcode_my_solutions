@@ -608,3 +608,24 @@ func TestMaxProfit(t *testing.T) {
 		})
 	}
 }
+
+func TestIsPalindromeString(t *testing.T) {
+	tests := []struct {
+		input string
+		want  bool
+	}{
+		{"A man, a plan, a canal: Panama", true},
+		{"race a car", false},
+		{" ", true},
+		{"Marge, let's \"[went].\" I await {news} telegram.", true},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := leetcode.IsPalindromeString_125(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("IsPalindromeString(%v) = %v ; want %v", tt.input, got, tt.input)
+			}
+		})
+	}
+}
