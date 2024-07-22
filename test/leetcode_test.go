@@ -629,3 +629,23 @@ func TestIsPalindromeString(t *testing.T) {
 		})
 	}
 }
+
+func TestSingleNumber(t *testing.T) {
+	tests := []struct{
+		input	[]int
+		want	int
+	}{
+		{[]int{2,2,1}, 1},
+		{[]int{4,1,2,1,2}, 4},
+		{[]int{1}, 1},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T){
+			got := leetcode.SingleNumber_136(tt.input)
+			if !reflect.DeepEqual(tt.want, got) {
+				t.Errorf("SingleNumber(%v)=%v, want %v", tt.input,got,tt.want)
+			}
+		})
+	}
+}

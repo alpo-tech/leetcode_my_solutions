@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -625,4 +626,45 @@ func IsPalindromeString_125(s string) bool {
 
 	return result
 
+}
+
+func SingleNumber_136(nums []int) int {
+
+	numsCount := make(map[int]int)
+
+	for _, value := range nums {
+		numsCount[value]++
+	}
+
+	for k, v := range numsCount {
+		if v == 1 {
+			return k
+		}
+	}
+
+	return 0
+}
+
+func SingleNumberXOR_136(nums []int) int {
+	unique := 0
+	for _, num := range nums {
+		unique ^= num 
+	}
+	return unique
+}
+
+func SingleNumberSort_136(nums []int) int {
+	sort.Ints(nums)
+
+	for i := 0; i < len(nums); i+=2 {
+		if i+1 >= len(nums) {
+			return nums[i]
+		}
+
+		if nums[i] != nums[i+1] {
+			return nums[i]
+		}
+	}
+
+	return 0
 }
