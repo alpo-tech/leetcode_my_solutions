@@ -55,3 +55,40 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 
 	return result.Next
 }
+
+func HasCycle(head *ListNode) bool {
+	if head == nil {
+		return false
+	}
+
+	first := head.Next
+	if first == nil {
+		return false
+	}
+
+	second := first.Next
+	if second == nil {
+		return false
+	}
+
+	for first != nil && second != nil {
+		if first == second {
+			return true
+		}
+
+		first = first.Next
+		if first == nil {
+			return false
+		}
+
+		second = second.Next
+		if second == nil {
+			return false
+		}
+
+        second = second.Next 
+
+	}
+
+	return false
+}
