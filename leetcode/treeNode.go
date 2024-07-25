@@ -218,3 +218,21 @@ func HasPathSum(root *TreeNode, targetSum int) bool {
 
 	return HasPathSum(root.Left, targetSum-root.Val) || HasPathSum(root.Right, targetSum-root.Val)
 }
+
+func helperPreorderTraversalReq(root *TreeNode, nums *[]int) {
+	if root == nil {
+		return
+	}
+	*nums = append(*nums, root.Val)
+	helperInorderTraversalReq(root.Left, nums)
+	helperInorderTraversalReq(root.Right, nums)
+}
+
+func PreorderTraversalReq(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	nums := make([]int, 0)
+	helperPreorderTraversalReq(root, &nums)
+	return nums
+}

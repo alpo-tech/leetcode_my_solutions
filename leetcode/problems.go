@@ -648,7 +648,7 @@ func SingleNumber_136(nums []int) int {
 func SingleNumberXOR_136(nums []int) int {
 	unique := 0
 	for _, num := range nums {
-		unique ^= num 
+		unique ^= num
 	}
 	return unique
 }
@@ -656,7 +656,7 @@ func SingleNumberXOR_136(nums []int) int {
 func SingleNumberSort_136(nums []int) int {
 	sort.Ints(nums)
 
-	for i := 0; i < len(nums); i+=2 {
+	for i := 0; i < len(nums); i += 2 {
 		if i+1 >= len(nums) {
 			return nums[i]
 		}
