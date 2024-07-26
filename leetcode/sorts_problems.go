@@ -17,6 +17,7 @@ package leetcode
 //
 //}
 
+// Counting sort https://leetcode.com/problems/sort-an-array/solutions/5532275/explanations-no-one-will-give-you-3-detailed-approaches-extremely-simple-and-effective
 func SortArray(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
@@ -33,9 +34,9 @@ func SortArray(nums []int) []int {
 		}
 	}
 
-	count := make([]int, max - min + 1) 
+	count := make([]int, max-min+1)
 	for _, num := range nums {
-		count[num - min]++
+		count[num-min]++
 	}
 
 	index := 0

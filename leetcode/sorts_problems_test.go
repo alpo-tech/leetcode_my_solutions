@@ -8,7 +8,7 @@ import (
 func TestSortArray(t *testing.T) {
 	type args struct {
 		nums []int
-	}:
+	}
 	tests := []struct {
 		name string
 		args args
