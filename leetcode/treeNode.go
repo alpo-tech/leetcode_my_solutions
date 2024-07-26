@@ -236,3 +236,22 @@ func PreorderTraversalReq(root *TreeNode) []int {
 	helperPreorderTraversalReq(root, &nums)
 	return nums
 }
+
+func postorderHelper(root *TreeNode, nums *[]int) {
+	if root == nil {
+		return
+	}
+
+	postorderHelper(root.Right, nums)
+	postorderHelper(root.Left, nums)
+	*nums = append(*nums, root.Val)
+}
+func PostorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	nums := make([]int, 0)
+	postorderHelper(root, &nums)
+	return nums
+}
