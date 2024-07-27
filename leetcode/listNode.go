@@ -86,9 +86,29 @@ func HasCycle(head *ListNode) bool {
 			return false
 		}
 
-        second = second.Next 
+		second = second.Next
 
 	}
 
 	return false
+}
+
+func GetIntersectionNode(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+
+	listNodesMap := make(map[*ListNode]int, 0)
+	for i := headA; i != nil; i = i.Next {
+		listNodesMap[i]++
+	}
+
+	for i := headB; i != nil; i = i.Next {
+		value := listNodesMap[i]
+		if value != 0 {
+			return i
+		}
+	}
+
+	return nil
 }
