@@ -668,3 +668,20 @@ func SingleNumberSort_136(nums []int) int {
 
 	return 0
 }
+
+func ConvertToTitle_168(columnNumber int) string {
+	s := make([]byte, 0)
+
+	for columnNumber > 0 {
+		columnNumber--
+		ostatok := columnNumber % 26
+		s = append(s, byte(ostatok+65))
+		columnNumber = columnNumber / 26
+	}
+
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+
+	return string(s)
+}
