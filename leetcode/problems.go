@@ -705,3 +705,21 @@ func MajorityElement_169(nums []int) int {
 
 	return result
 }
+
+func MajorityElement_VoteAlgorithm_169(nums []int) int {
+	majority_element, majority_element_freq := nums[0], 1
+
+	for i := 1; i < len(nums); i++ {
+		if majority_element_freq == 0 {
+			majority_element, majority_element_freq = nums[i], 1
+		} else {
+			if majority_element == nums[i] {
+				majority_element_freq++
+			} else {
+				majority_element_freq--
+			}
+		}
+	}
+
+	return majority_element
+}

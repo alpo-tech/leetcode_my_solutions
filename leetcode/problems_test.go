@@ -42,5 +42,12 @@ func TestMajorityElement_169(t *testing.T) {
 				t.Errorf("MajorityElement(%v)=%v, want %v", tt.args, got, tt.want)
 			}
 		})
+
+		t.Run("version algo", func(t *testing.T) {
+			got := MajorityElement_VoteAlgorithm_169(tt.args)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MajorityElementAlg(%v)=%v, want %v", tt.args, got, tt.want)
+			}
+		})
 	}
 }
