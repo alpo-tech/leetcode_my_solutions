@@ -685,3 +685,23 @@ func ConvertToTitle_168(columnNumber int) string {
 
 	return string(s)
 }
+
+func MajorityElement_169(nums []int) int {
+	numsCount := make(map[int]int, len(nums))
+
+	for _, value := range nums {
+		numsCount[value]++
+	}
+
+	result := 0
+	maxCount := 0
+
+	for num, count := range numsCount {
+		if count > maxCount {
+			maxCount = count
+			result = num
+		}
+	}
+
+	return result
+}
