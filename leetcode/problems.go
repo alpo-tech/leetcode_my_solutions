@@ -723,3 +723,15 @@ func MajorityElement_VoteAlgorithm_169(nums []int) int {
 
 	return majority_element
 }
+
+func TitleToNumber(columnTitle string) int {
+	summa := 0
+
+	for _, letter := range columnTitle {
+		summa = summa * 26
+		summa += int(letter) - 64
+
+	}
+
+	return summa
+}

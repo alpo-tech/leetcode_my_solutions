@@ -51,3 +51,24 @@ func TestMajorityElement_169(t *testing.T) {
 		})
 	}
 }
+
+func TestTitleToNumber(t *testing.T) {
+	type args struct {
+		columntTitle string
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{"A"}, want: 1},    // TODO: Add test cases.
+		{args: args{"AB"}, want: 28},  // TODO: Add test cases.
+		{args: args{"ZY"}, want: 701}, // TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := TitleToNumber(tt.args.columntTitle); got != tt.want {
+				t.Errorf("TitleToNumber() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
