@@ -3,17 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	number := 27
+	var number uint32 = 4251705699 // пример 32-битного числа (в 16-ричном формате для наглядности)
 
-	ascii := 65
+	// Перевернуть все биты
+	invertedNumber := ^number
 
-	result := make([]rune, 0)
-	for number > 0 {
-		ostatok := number % 27
-		result = append(result, (rune(ostatok + ascii)))
-		number = number / 27
-	}
-
-	fmt.Println(string(result))
-
+	// Печать исходного и инвертированного числа в бинарном формате
+	fmt.Printf("Original number: %032b\n", number)
+	fmt.Printf("Inverted number: %032b\n", invertedNumber)
 }

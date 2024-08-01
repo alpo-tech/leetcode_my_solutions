@@ -735,3 +735,21 @@ func TitleToNumber(columnTitle string) int {
 
 	return summa
 }
+
+func IsIsomorphic_205(s string, t string) bool {
+	mapS := make([]int, 128)
+	mapT := make([]int, 128) 
+
+	for index := range s {
+		sCh := s[index]
+		tCh := t[index]
+
+		if mapS[sCh] == 0 && mapT[tCh] == 0 {
+			mapS[sCh] = int(tCh)
+			mapT[tCh] = int(sCh)
+		} else if mapS[sCh] != int(tCh) || mapT[tCh] != int(sCh) {
+			return false
+		}
+	}
+	return true
+}

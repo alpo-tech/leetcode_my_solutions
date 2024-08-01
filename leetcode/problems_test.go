@@ -72,3 +72,26 @@ func TestTitleToNumber(t *testing.T) {
 		})
 	}
 }
+
+func TestIsIsomorphic_205(t *testing.T) {
+	type args struct {
+		s string
+		t string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{"badc", "fafa"}, want: false},  // TODO: Add test cases.
+		{args: args{"egg", "add"}, want: true},     // TODO: Add test cases.
+		{args: args{"foo", "bar"}, want: false},    // TODO: Add test cases.
+		{args: args{"paper", "title"}, want: true}, // TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := IsIsomorphic_205(tt.args.s, tt.args.t); got != tt.want {
+				t.Errorf("IsIsomorphic_205() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
