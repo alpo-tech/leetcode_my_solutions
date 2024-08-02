@@ -112,3 +112,25 @@ func GetIntersectionNode(headA, headB *ListNode) *ListNode {
 
 	return nil
 }
+
+func ReverseList(head *ListNode) *ListNode {
+	arrayListNode := make([]*ListNode, 0)
+
+	current := head
+
+	for current != nil {
+		arrayListNode = append(arrayListNode, current)
+		current = current.Next
+	}
+
+	for i := len(arrayListNode) - 1; i > 0; i-- {
+		arrayListNode[i].Next = arrayListNode[i-1]
+	}
+
+	if len(arrayListNode) == 0 {
+		return nil
+	}
+
+	arrayListNode[0].Next = nil
+	return arrayListNode[len(arrayListNode)-1]
+}
