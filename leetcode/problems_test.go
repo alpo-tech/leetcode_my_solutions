@@ -95,3 +95,46 @@ func TestIsIsomorphic_205(t *testing.T) {
 		})
 	}
 }
+
+func TestContainsDuplicate(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{[]int{1, 2, 1, 4}}, want: true},          // TODO: Add test cases.
+		{args: args{[]int{1, 2, 3, 4}}, want: false},         // TODO: Add test cases.
+		{args: args{[]int{1, 1, 3, 4, 2, 3, 4}}, want: true}, // TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := ContainsDuplicate_217(tt.args.nums); got != tt.want {
+				t.Errorf("ContainsDuplicate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestContainsDuplicateNearby(t *testing.T) {
+	type args struct {
+		nums []int
+		k    int
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{[]int{1, 2, 3, 1}, 3}, want: true},        // TODO: Add test cases.
+		{args: args{[]int{1, 0, 1, 1}, 1}, want: true},        // TODO: Add test cases.
+		{args: args{[]int{1, 2, 3, 1, 2, 3}, 2}, want: false}, // TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := ContainsNearbyDuplicate_219(tt.args.nums, tt.args.k); got != tt.want {
+				t.Errorf("ContainsDuplicateNearby() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

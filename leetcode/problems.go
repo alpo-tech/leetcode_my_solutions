@@ -738,7 +738,7 @@ func TitleToNumber(columnTitle string) int {
 
 func IsIsomorphic_205(s string, t string) bool {
 	mapS := make([]int, 128)
-	mapT := make([]int, 128) 
+	mapT := make([]int, 128)
 
 	for index := range s {
 		sCh := s[index]
@@ -752,4 +752,44 @@ func IsIsomorphic_205(s string, t string) bool {
 		}
 	}
 	return true
+}
+
+func ContainsDuplicate_217(nums []int) bool {
+	countNums := make(map[int]int, len(nums))
+
+	for _, value := range nums {
+		if _, ok := countNums[value]; ok {
+			return true
+		}
+
+		countNums[value]++
+	}
+
+	return false
+}
+
+
+
+func absoluteInt(num int) int {
+	if num < 0 {
+		return -num
+	}
+
+	return num
+}
+
+
+func ContainsNearbyDuplicate_219(nums []int, k int) bool {
+	countNums := make(map[int]int, len(nums)) 
+
+	for index, value := range nums {
+		if prevIndex, ok := countNums[value]; ok {
+			if absoluteInt(index - prevIndex) <= k {
+				return true
+			}
+		}
+		
+		countNums[value] = index
+	}
+	return false
 }
