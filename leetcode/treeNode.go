@@ -246,6 +246,7 @@ func postorderHelper(root *TreeNode, nums *[]int) {
 	postorderHelper(root.Left, nums)
 	*nums = append(*nums, root.Val)
 }
+
 func PostorderTraversal(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
@@ -254,4 +255,12 @@ func PostorderTraversal(root *TreeNode) []int {
 	nums := make([]int, 0)
 	postorderHelper(root, &nums)
 	return nums
+}
+
+func CountNodes_222(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	return 1 + CountNodes_222(root.Left) + CountNodes_222(root.Right)
 }
