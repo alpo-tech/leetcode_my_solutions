@@ -138,3 +138,24 @@ func TestContainsDuplicateNearby(t *testing.T) {
 		})
 	}
 }
+
+func TestIsAnagram(t *testing.T) {
+	type args struct {
+		s string
+		t string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{"anagram", "nagaram"}, want: true},
+		{args: args{"rat", "car"}, want: false},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := IsAnagram(tt.args.s, tt.args.t); got != tt.want {
+				t.Errorf("IsAnagram() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

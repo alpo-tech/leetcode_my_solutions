@@ -768,8 +768,6 @@ func ContainsDuplicate_217(nums []int) bool {
 	return false
 }
 
-
-
 func absoluteInt(num int) int {
 	if num < 0 {
 		return -num
@@ -778,18 +776,38 @@ func absoluteInt(num int) int {
 	return num
 }
 
-
 func ContainsNearbyDuplicate_219(nums []int, k int) bool {
-	countNums := make(map[int]int, len(nums)) 
+	countNums := make(map[int]int, len(nums))
 
 	for index, value := range nums {
 		if prevIndex, ok := countNums[value]; ok {
-			if absoluteInt(index - prevIndex) <= k {
+			if absoluteInt(index-prevIndex) <= k {
 				return true
 			}
 		}
-		
+
 		countNums[value] = index
 	}
 	return false
+}
+
+func IsAnagram(s string, t string) bool {
+	countLetter := make(map[byte]int, len(s))
+	for _, letter := range s {
+		countLetter[byte(letter)]++
+	}
+
+	for _, letter := range t {
+		if _, ok := countLetter[byte(letter)]; !ok {
+			return false
+		}
+		countLetter[byte(letter)]--
+	}
+
+	for _, value := range countLetter {
+		if value != 0 {
+			return false
+		}
+	}
+	return true
 }
