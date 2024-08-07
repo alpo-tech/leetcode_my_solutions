@@ -49,3 +49,35 @@ func SortArray(nums []int) []int {
 	}
 	return nums
 }
+
+// topology sort
+func findAllRecipes(recipes []string, ingredients [][]string, supplies []string) []string {
+	countIngredients := make(map[string]int, len(recipes))
+
+	for indexRecipe, recipeIngreingredients := range ingredients {
+		countIngredients[recipes[indexRecipe]] = len(recipeIngreingredients)
+	}
+
+	ingredientForRecipes := make(map[string][]string)
+	for indexRecipe, arrayIngredients := range ingredients {
+		for _, ingredient := range arrayIngredients {
+			ingredientForRecipes[ingredient] = append(ingredientForRecipes[ingredient], recipes[indexRecipe])
+		}
+	}
+
+	result := make([]string, 0)
+	i := 0
+	for i < len(supplies) {
+		supplie := supplies[i]
+		for _, recipes := range ingredientForRecipes[supplie] {
+			countIngredients[recipes]--
+			if countIngredients[recipes] == 0 {
+				result = append(result, recipes)
+				supplies = append(supplies, recipes)
+			}
+		}
+		i++
+	}
+
+	return result
+}

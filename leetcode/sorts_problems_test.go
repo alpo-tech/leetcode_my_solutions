@@ -24,3 +24,25 @@ func TestSortArray(t *testing.T) {
 		})
 	}
 }
+
+func Test_findAllRecipes(t *testing.T) {
+	type args struct {
+		recipes     []string
+		ingredients [][]string
+		supplies    []string
+	}
+	tests := []struct {
+		args args
+		want []string
+	}{
+		//{args: args{[]string{"bread"}, [][]string{{"yeast", "flour"}}, []string{"yeast", "flour"}}, want: []string{"bread"}},
+		{args: args{[]string{"bread", "sandwich"}, [][]string{{"yeast", "flour"}, {"bread", "meat"}}, []string{"yeast", "flour", "meat"}}, want: []string{"bread", "sandwich"}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := findAllRecipes(tt.args.recipes, tt.args.ingredients, tt.args.supplies); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("findAllRecipes() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
