@@ -35,7 +35,7 @@ func Test_findAllRecipes(t *testing.T) {
 		args args
 		want []string
 	}{
-		//{args: args{[]string{"bread"}, [][]string{{"yeast", "flour"}}, []string{"yeast", "flour"}}, want: []string{"bread"}},
+		{args: args{[]string{"bread"}, [][]string{{"yeast", "flour"}}, []string{"yeast", "flour"}}, want: []string{"bread"}},
 		{args: args{[]string{"bread", "sandwich"}, [][]string{{"yeast", "flour"}, {"bread", "meat"}}, []string{"yeast", "flour", "meat"}}, want: []string{"bread", "sandwich"}},
 	}
 	for _, tt := range tests {

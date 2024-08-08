@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"math"
+	"strconv"
 )
 
 type TreeNode struct {
@@ -263,4 +264,52 @@ func CountNodes_222(root *TreeNode) int {
 	}
 
 	return 1 + CountNodes_222(root.Left) + CountNodes_222(root.Right)
+}
+
+
+
+ func BinaryTreePathsHelper(root *TreeNode, str string) []string {
+	
+	commonStr := str + "->" + strconv.Itoa(root.Val)
+
+    if root.Left == nil && root.Right == nil {
+        return []string{commonStr}
+    }
+
+
+    if root.Left == nil {
+        return BinaryTreePathsHelper(root.Right, commonStr)
+    }
+
+
+    if root.Right == nil {
+        return BinaryTreePathsHelper(root.Left, commonStr)
+    }
+
+
+    return append(BinaryTreePathsHelper(root.Right, commonStr),  BinaryTreePathsHelper(root.Left, commonStr)...)
+    
+}
+
+func BinaryTreePaths(root *TreeNode) []string {
+
+	if root == nil {
+		return []string{} 
+	}
+
+	result := make([]string, 0)
+    
+    if root.Left == nil && root.Right == nil {
+        return append(result, strconv.Itoa(root.Val))
+    }
+
+    if root.Left != nil {
+        result = append(result, BinaryTreePathsHelper(root.Left, strconv.Itoa(root.Val))... )
+    }
+
+    if root.Right != nil {
+	    result = append(result, BinaryTreePathsHelper(root.Right, strconv.Itoa(root.Val))... )
+    }
+
+	return result
 }
