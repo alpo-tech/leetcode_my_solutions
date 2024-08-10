@@ -811,3 +811,24 @@ func IsAnagram(s string, t string) bool {
 	}
 	return true
 }
+
+func AddDigits(num int) int {
+	result := num
+
+	for result > 9 {
+		summa := 0
+
+		for result != 0 {
+			summa += result % 10
+			result = result / 10
+		}
+		result = summa
+	}
+
+	return result
+}
+
+
+func CanNimWim_292(n int) bool {
+	return n%4 != 0
+}

@@ -159,3 +159,44 @@ func TestIsAnagram(t *testing.T) {
 		})
 	}
 }
+
+func TestAddDigits(t *testing.T) {
+	type args struct {
+		num int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{38}, want: 2},
+		{args: args{0}, want: 0},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := AddDigits(tt.args.num); got != tt.want {
+				t.Errorf("AddDigits() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestCanNimWim_292(t *testing.T) {
+	type args struct {
+		n int
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args{4}, false},
+		{args{1}, true},
+		{args{2}, true},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := CanNimWim_292(tt.args.n); got != tt.want {
+				t.Errorf("CanNimWim_292() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
