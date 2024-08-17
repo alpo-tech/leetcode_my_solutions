@@ -828,7 +828,45 @@ func AddDigits(num int) int {
 	return result
 }
 
-
 func CanNimWim_292(n int) bool {
 	return n%4 != 0
+}
+
+func DetectCapitalUse_520(word string) bool {
+	firstLetter := false
+	allLetter := false
+
+
+	for i, s := range word {
+		if i == 0 && s >= 65 && s <= 90 {
+			firstLetter = true
+			continue
+		}
+
+		if s >= 65 && s <= 90 {
+			if i == 1 {
+				if firstLetter {
+					allLetter = true
+				} else {
+					return false
+				}
+			} else if !allLetter {
+				return false
+			} else {
+				continue
+			} 
+		} else if allLetter {
+			return false
+		}
+	}
+
+	return true
+
+
+	// other solution 
+	//allCap := strings.ToUpper(word)
+    //allLower := strings.ToLower(word)
+    //firstCap := strings.ToUpper(string(word[0])) + strings.ToLower(word)[1:]
+    
+    //return word == allCap || word == allLower || word == firstCap
 }

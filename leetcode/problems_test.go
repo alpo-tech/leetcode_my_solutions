@@ -200,3 +200,25 @@ func TestCanNimWim_292(t *testing.T) {
 		})
 	}
 }
+
+func TestDetectCapitalUse_520(t *testing.T) {
+	type args struct {
+		word string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args{"USA"}, true},
+		{args{"FlaG"}, false},
+		{args{"leetcode"}, true},
+		{args{"Google"}, true},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := DetectCapitalUse_520(tt.args.word); got != tt.want {
+				t.Errorf("DetectCapitalUse_520() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
