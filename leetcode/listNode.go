@@ -7,10 +7,22 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func printList(list *ListNode) {
+func PrintList(list *ListNode) {
 	for l := list; l != nil; l = l.Next {
-		fmt.Printf("%v -> ", l.Val)
+		fmt.Printf("%v ", l.Val)
 	}
+}
+
+func CreateList(nums []int) *ListNode {
+	head := &ListNode{}
+	head.Val = nums[0]
+	res := head
+	for _, value := range nums[1:] {
+		head.Next = &ListNode{}
+		head = head.Next
+		head.Val = value
+	}
+	return res
 }
 
 func deleteDuplicates(head *ListNode) *ListNode {
@@ -133,4 +145,70 @@ func ReverseList(head *ListNode) *ListNode {
 
 	arrayListNode[0].Next = nil
 	return arrayListNode[len(arrayListNode)-1]
+}
+
+func ReverseList_206(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	if head.Next == nil {
+		return head
+	}
+
+	currenList := head.Next
+	previosList := head
+	previosList.Next = nil
+	for currenList != nil {
+		nextList := currenList.Next
+		currenList.Next = previosList
+		previosList = currenList
+		currenList = nextList
+	}
+	return previosList
+}
+
+func reverseListCount_92(head *ListNode, count int) (*ListNode, *ListNode) {
+	var revHead *ListNode
+	origHead := head
+
+	for count > 0 {
+		tmp := head.Next
+		head.Next = revHead
+		revHead = head
+		head = tmp
+		count--
+	}
+
+	return origHead, revHead
+}
+
+func ReverseBetween_92(head *ListNode, left int, right int) *ListNode {
+
+	var beforeLeft, newEnd, newBegin, afterRight *ListNode
+
+	result := head
+
+	for i := 1; i <= right; i++ {
+		if i == left {
+			leftRev := head
+			for i <= right {
+				afterRight = head.Next
+				head = head.Next
+				i++
+			}
+			newEnd, newBegin = reverseListCount_92(leftRev, right-left+1)
+			break
+		}
+		beforeLeft = head
+		head = head.Next
+	}
+
+	if beforeLeft == nil {
+		result = newBegin
+	} else {
+		beforeLeft.Next = newBegin
+	}
+	newEnd.Next = afterRight
+	return result
 }
