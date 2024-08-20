@@ -1,13 +1,17 @@
 package main
 
-import "leetcode.com/leetcode"
+import (
+	"fmt"
+
+	"leetcode.com/leetcode"
+)
 
 func main() {
-	list := leetcode.CreateList([]int{1, 2, 3, 4, 5})
 
-	//leetcode.PrintList(list)
-
-	revList := leetcode.ReverseBetween(list, 2, 4)
-
-	leetcode.PrintList(revList)
+	test := []int{1, 1, 1, 2, 2, 3}
+	test1 := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
+	leetcode.RemoveDuplicates_80(test)
+	leetcode.RemoveDuplicates_80(test1)
+	fmt.Println(test)
+	fmt.Println(test1)
 }

@@ -870,3 +870,23 @@ func DetectCapitalUse_520(word string) bool {
     
     //return word == allCap || word == allLower || word == firstCap
 }
+
+func RemoveDuplicates_80(nums []int) int {
+	k := 1
+	twiceFlag := false
+	
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[k - 1] {
+			nums[k] = nums[i]
+			k++
+			twiceFlag = false
+		} else if !twiceFlag  {
+			nums[k] = nums[i]
+			twiceFlag = true
+			k++
+		} 
+	}
+
+	return k 
+}
