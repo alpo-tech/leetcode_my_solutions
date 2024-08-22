@@ -836,7 +836,6 @@ func DetectCapitalUse_520(word string) bool {
 	firstLetter := false
 	allLetter := false
 
-
 	for i, s := range word {
 		if i == 0 && s >= 65 && s <= 90 {
 			firstLetter = true
@@ -854,7 +853,7 @@ func DetectCapitalUse_520(word string) bool {
 				return false
 			} else {
 				continue
-			} 
+			}
 		} else if allLetter {
 			return false
 		}
@@ -862,31 +861,78 @@ func DetectCapitalUse_520(word string) bool {
 
 	return true
 
-
-	// other solution 
+	// other solution
 	//allCap := strings.ToUpper(word)
-    //allLower := strings.ToLower(word)
-    //firstCap := strings.ToUpper(string(word[0])) + strings.ToLower(word)[1:]
-    
-    //return word == allCap || word == allLower || word == firstCap
+	//allLower := strings.ToLower(word)
+	//firstCap := strings.ToUpper(string(word[0])) + strings.ToLower(word)[1:]
+
+	//return word == allCap || word == allLower || word == firstCap
 }
 
 func RemoveDuplicates_80(nums []int) int {
 	k := 1
 	twiceFlag := false
-	
 
 	for i := 1; i < len(nums); i++ {
-		if nums[i] != nums[k - 1] {
+		if nums[i] != nums[k-1] {
 			nums[k] = nums[i]
 			k++
 			twiceFlag = false
-		} else if !twiceFlag  {
+		} else if !twiceFlag {
 			nums[k] = nums[i]
 			twiceFlag = true
 			k++
-		} 
+		}
 	}
 
-	return k 
+	return k
+}
+
+func Rotate_189(nums []int, k int) {
+
+	if k == len(nums) || len(nums) < 2 || k == 0 {
+		return
+	}
+
+	if k > len(nums) {
+		k = k % len(nums)
+	}
+
+	if k%2 == 0 {
+		Rotate_189(nums, k-1)
+		Rotate_189(nums, 1)
+		return
+	}
+
+	positionNew := k
+	tmpOld := nums[0]
+	tmpNew := 0
+
+	for i := 0; i < len(nums); i++ {
+		if positionNew >= len(nums) {
+			positionNew = positionNew - len(nums)
+		}
+
+		tmpNew = nums[positionNew]
+		nums[positionNew] = tmpOld
+		tmpOld = tmpNew
+		positionNew += k
+	}
+
+}
+
+func maxProfit_122(prices []int) int {
+	profit := 0 
+	prevPrice := prices[0]
+
+	for i := 1; i < len(prices); i++ {
+		if prices[i] - prevPrice > 0 {
+			profit += prices[i] - prevPrice
+			prevPrice = prices[i]
+		} else if prevPrice > prices[i] {
+			prevPrice = prices[i]
+		}
+	}
+
+	return profit
 }

@@ -2,16 +2,13 @@ package main
 
 import (
 	"fmt"
-
 	"leetcode.com/leetcode"
 )
 
 func main() {
+	//test := []int{-1, -100, 3, 99}
+	test := []int{1, 2, 3, 4, 5, 6}
 
-	test := []int{1, 1, 1, 2, 2, 3}
-	test1 := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
-	leetcode.RemoveDuplicates_80(test)
-	leetcode.RemoveDuplicates_80(test1)
+	leetcode.Rotate_189(test, 3)
 	fmt.Println(test)
-	fmt.Println(test1)
 }
