@@ -243,3 +243,47 @@ func Test_maxProfit_122(t *testing.T) {
 		})
 	}
 }
+
+func TestIsSubsequence_392(t *testing.T) {
+	type args struct {
+		s string
+		t string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{"acb", "ahbgdc"}, want: false},
+		{args: args{"abc", "ahbgdc"}, want: true},
+		{args: args{"axc", "ahbgdc"}, want: false},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := IsSubsequence_392(tt.args.s, tt.args.t); got != tt.want {
+				t.Errorf("IsSubsequence_392() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestCanConstruct_383(t *testing.T) {
+	type args struct {
+		ransomNote string
+		magazine   string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{"a", "b"}, want: false},
+		{args: args{"aa", "ab"}, want: false},
+		{args: args{"aa", "aab"}, want: true},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := CanConstruct_383(tt.args.ransomNote, tt.args.magazine); got != tt.want {
+				t.Errorf("CanConstruct_383() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

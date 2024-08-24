@@ -922,11 +922,11 @@ func Rotate_189(nums []int, k int) {
 }
 
 func maxProfit_122(prices []int) int {
-	profit := 0 
+	profit := 0
 	prevPrice := prices[0]
 
 	for i := 1; i < len(prices); i++ {
-		if prices[i] - prevPrice > 0 {
+		if prices[i]-prevPrice > 0 {
 			profit += prices[i] - prevPrice
 			prevPrice = prices[i]
 		} else if prevPrice > prices[i] {
@@ -935,4 +935,40 @@ func maxProfit_122(prices []int) int {
 	}
 
 	return profit
+}
+
+
+func IsSubsequence_392(s string, t string) bool {
+	if len(s) == 0 {
+		return true
+	}
+
+	si := 0
+	for ti := 0; ti < len(t); ti++ {
+		if s[si] == t[ti] {
+			si++
+			if si == len(s) {
+				return true
+			}
+		}
+	}
+	return false
+
+}
+
+func CanConstruct_383(ransomNote string, magazine string) bool {
+
+	counter := make(map[byte]int, len(magazine))
+	for _, s := range magazine {
+		counter[byte(s)]++
+	}
+
+	for _, s := range ransomNote {
+		if count, ok := counter[byte(s)]; !ok || count == 0 {
+			return false
+		}
+		counter[byte(s)]--
+	}
+
+	return true 
 }
