@@ -937,7 +937,6 @@ func maxProfit_122(prices []int) int {
 	return profit
 }
 
-
 func IsSubsequence_392(s string, t string) bool {
 	if len(s) == 0 {
 		return true
@@ -970,5 +969,30 @@ func CanConstruct_383(ransomNote string, magazine string) bool {
 		counter[byte(s)]--
 	}
 
-	return true 
+	return true
+}
+
+func WordPattern_290(pattern string, s string) bool {
+	patternS := strings.Split(s, " ")
+	mapPattern := make(map[byte]string)
+	mapPatternStr := make(map[string]byte)
+
+	if len(patternS) != len(pattern) {
+		return false
+	}
+
+	for i, sym := range pattern {
+		checkOne, okOne := mapPattern[byte(sym)]
+		checkTwo, okTwo := mapPatternStr[patternS[i]]
+
+		if okOne != okTwo {
+			return false
+		} else if !okOne {
+			mapPattern[byte(sym)] = patternS[i]
+			mapPatternStr[patternS[i]] = byte(sym)
+		} else if checkOne != patternS[i] || checkTwo != byte(sym) {
+			return false
+		}
+	}
+	return true
 }

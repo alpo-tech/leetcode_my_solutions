@@ -287,3 +287,26 @@ func TestCanConstruct_383(t *testing.T) {
 		})
 	}
 }
+
+func TestWordPattern_290(t *testing.T) {
+	type args struct {
+		pattern string
+		s       string
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args{"abba", "dog cat cat dog"}, true},
+		{args{"abba", "dog cat cat fish"}, false},
+		{args{"aaaa", "dog cat cat dog"}, false},
+		{args{"abba", "dog dog dog dog"}, false},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := WordPattern_290(tt.args.pattern, tt.args.s); got != tt.want {
+				t.Errorf("WordPattern_290() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
