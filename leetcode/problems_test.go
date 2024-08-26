@@ -310,3 +310,25 @@ func TestWordPattern_290(t *testing.T) {
 		})
 	}
 }
+
+func TestSummaryRanges_228(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want []string
+	}{
+		{args: args{[]int{0, 1, 2, 4, 5, 7}}, want: []string{"0->2", "4->5", "7"}},
+		{args: args{[]int{0, 2, 3, 4, 6, 8, 9}}, want: []string{"0", "2->4", "6", "8->9"}},
+		{args: args{[]int{0}}, want: []string{"0"}},
+		{args: args{[]int{0, 1, 2, 3, 4}}, want: []string{"0->4"}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := SummaryRanges_228(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("SummaryRanges_228() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

@@ -996,3 +996,35 @@ func WordPattern_290(pattern string, s string) bool {
 	}
 	return true
 }
+
+func SummaryRanges_228(nums []int) []string {
+	result := make([]string, 0, len(nums))
+
+	if len(nums) == 0 {
+		return result
+	}
+
+	if len(nums) == 1 {
+		return append(result, strconv.Itoa(nums[0]))
+	}
+
+	i, j := 1, 0
+	for ; i < len(nums); i++ {
+		if nums[i]-nums[i-1] != 1 {
+			if i-j == 1 {
+				result = append(result, strconv.Itoa(nums[j]))
+			} else {
+				result = append(result, fmt.Sprintf("%d->%d", nums[j], nums[i-1]))
+			}
+			j = i
+		}
+	}
+
+	if i-j == 1 {
+		result = append(result, strconv.Itoa(nums[i-1]))
+	} else {
+		result = append(result, fmt.Sprintf("%d->%d", nums[j], nums[i-1]))
+	}
+
+	return result
+}
