@@ -1028,3 +1028,16 @@ func SummaryRanges_228(nums []int) []string {
 
 	return result
 }
+
+func HammingWeight_191(n int) int {
+	bynaryStr := fmt.Sprintf("%b", n)
+	count := 0
+
+	for _, value := range bynaryStr {
+		if value == '1' {
+			count++
+		}
+	}
+
+	return count
+}

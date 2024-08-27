@@ -1,14 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"leetcode.com/leetcode"
-)
+import "fmt"
 
 func main() {
-	//test := []int{-1, -100, 3, 99}
-	test := []int{1, 2, 3, 4, 5, 6}
+	var a, b byte
+	a = 255
+	b = 48
 
-	leetcode.Rotate_189(test, 3)
-	fmt.Println(test)
+	fmt.Printf("%08b = %d\n", a, a)
+	c := a & b
+	fmt.Println(c)
+
+	a = a << 7
+	//a = a | 1
+	fmt.Println(a)
 }

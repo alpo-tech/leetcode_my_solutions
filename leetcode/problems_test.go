@@ -332,3 +332,24 @@ func TestSummaryRanges_228(t *testing.T) {
 		})
 	}
 }
+
+func TestHammingWeight_191(t *testing.T) {
+	type args struct {
+		n int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args{11}, 3},
+		{args{128}, 1},
+		{args{2147483645}, 30},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := HammingWeight_191(tt.args.n); got != tt.want {
+				t.Errorf("HammingWeight_191() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
