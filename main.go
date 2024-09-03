@@ -1,17 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
+
+func IsPalindrome(s string) bool {
+	for i, j := 0, len(s)-1; i < j; {
+		if !unicode.IsLetter(rune(s[i])) && !unicode.IsNumber(rune(s[i])) {
+			i++
+			continue
+		}
+
+		if !unicode.IsLetter(rune(s[j])) && !unicode.IsNumber(rune(s[j])) {
+			j--
+			continue
+		}
+
+		if unicode.ToLower(rune(s[i])) != unicode.ToLower(rune(s[j])) {
+			return false
+		}
+
+		i++
+		j--
+	}
+
+	return true
+}
 
 func main() {
-	var a, b byte
-	a = 255
-	b = 48
-
-	fmt.Printf("%08b = %d\n", a, a)
-	c := a & b
-	fmt.Println(c)
-
-	a = a << 7
-	//a = a | 1
-	fmt.Println(a)
+	fmt.Println(IsPalindrome("A man, a plan, a canal: Panama"))
+	fmt.Println(IsPalindrome("race a car"))
+	fmt.Println(IsPalindrome(" "))
 }
