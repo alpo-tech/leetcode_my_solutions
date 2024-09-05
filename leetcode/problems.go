@@ -1041,3 +1041,36 @@ func HammingWeight_191(n int) int {
 
 	return count
 }
+
+func currentArea(begin, end, long int) int {
+	var min int
+
+	if begin > end {
+		min = end
+	} else {
+		min = begin
+	}
+
+	return min * long
+}
+
+func MaxArea(height []int) int {
+	begin := 0
+	end := len(height) - 1
+	max := currentArea(height[begin], height[end], end-begin)
+
+	for begin != end {
+		if height[begin] > height[end] {
+			end--
+		} else {
+			begin++
+		}
+
+		if max < currentArea(height[begin], height[end], end-begin) {
+			max = currentArea(height[begin], height[end], end-begin)
+		}
+	}
+
+	return max
+
+}

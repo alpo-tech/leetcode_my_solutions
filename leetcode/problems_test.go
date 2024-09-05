@@ -353,3 +353,23 @@ func TestHammingWeight_191(t *testing.T) {
 		})
 	}
 }
+
+func TestMaxArea(t *testing.T) {
+	type args struct {
+		height []int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{[]int{1, 8, 6, 2, 5, 4, 8, 3, 7}}, want: 49},
+		{args: args{[]int{1, 1}}, want: 1},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := MaxArea(tt.args.height); got != tt.want {
+				t.Errorf("MaxArea() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
