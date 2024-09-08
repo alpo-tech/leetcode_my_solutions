@@ -373,3 +373,19 @@ func TestMaxArea(t *testing.T) {
 		})
 	}
 }
+
+func TestGameOfLife(t *testing.T) {
+	type args struct {
+		board [][]int
+	}
+	tests := []struct {
+		args args
+	}{
+		{args: args{[][]int{{1, 1}, {1, 0}}}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			GameOfLife(tt.args.board)
+		})
+	}
+}

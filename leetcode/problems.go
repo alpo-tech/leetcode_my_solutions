@@ -1074,3 +1074,67 @@ func MaxArea(height []int) int {
 	return max
 
 }
+
+func GameOfLife(board [][]int) {
+	checkLive := func(x, y int) {
+		countLiveSquare := 0
+
+		if x-1 >= 0 && board[x-1][y]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if x-1 >= 0 && y-1 >= 0 && board[x-1][y-1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if y-1 >= 0 && board[x][y-1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if y-1 >= 0 && x+1 < len(board) && board[x+1][y-1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if x+1 < len(board) && board[x+1][y]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if x+1 < len(board) && y+1 < len(board[0]) && board[x+1][y+1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if y+1 < len(board[0]) && board[x][y+1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if x-1 >= 0 && y+1 < len(board[0]) && board[x-1][y+1]%2 == 1 {
+			countLiveSquare++
+		}
+
+		if board[x][y] == 1 {
+			if countLiveSquare == 2 || countLiveSquare == 3 {
+				board[x][y] = 3
+			}
+		} else {
+			if countLiveSquare == 3 {
+				board[x][y] = 2
+			}
+		}
+	}
+
+	for indexLine, arrayLine := range board {
+		for indexColumn := range arrayLine {
+			checkLive(indexLine, indexColumn)
+		}
+	}
+
+	for indexLine, arrayLine := range board {
+		for indexColumn := range arrayLine {
+			if board[indexLine][indexColumn] > 1 {
+				board[indexLine][indexColumn] = 1
+			} else {
+				board[indexLine][indexColumn] = 0
+			}
+		}
+	}
+}
