@@ -1223,3 +1223,47 @@ func isValidSudoku(board [][]byte) bool {
 
 	return checkBox(board)
 }
+
+func spiralOrderHelper(matrix [][]int, resultOrder []int, count int) []int {
+	first, second, third, four := false, false, false, false
+
+	for i := 0 + count; i < len(matrix[0])-count; i++ {
+		first = true
+		resultOrder = append(resultOrder, matrix[count][i])
+	}
+
+	if first {
+		for i := count + 1; i < len(matrix)-count; i++ {
+			second = true
+			resultOrder = append(resultOrder, matrix[i][len(matrix[i])-1-count])
+		}
+	}
+
+	if second {
+		for i := len(matrix[0]) - count - 2; i >= 0+count; i-- {
+			third = true
+			resultOrder = append(resultOrder, matrix[len(matrix)-1-count][i])
+		}
+	}
+
+	if third {
+		for i := len(matrix) - 2 - count; i >= 1+count; i-- {
+			four = true
+			resultOrder = append(resultOrder, matrix[i][count])
+		}
+	}
+
+	if four {
+		resultOrder = spiralOrderHelper(matrix, resultOrder, count+1)
+	}
+
+	return resultOrder
+}
+
+func spiralOrder(matrix [][]int) []int {
+	resultOrder := make([]int, 0)
+
+	resultOrder = spiralOrderHelper(matrix, resultOrder, 0)
+
+	return resultOrder
+}
