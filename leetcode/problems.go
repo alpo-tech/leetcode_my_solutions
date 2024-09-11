@@ -1138,3 +1138,88 @@ func GameOfLife(board [][]int) {
 		}
 	}
 }
+
+func isValidSudoku(board [][]byte) bool {
+	checkRow := func(row []byte) bool {
+		array := make(map[byte]bool, 9)
+		for i := byte('1'); i <= byte('9'); i++ {
+			array[i] = false
+		}
+
+		for _, value := range row {
+			if value == '.' {
+				continue
+			}
+
+			if v, ok := array[value]; !ok || v {
+				return false
+			}
+
+			array[value] = true
+		}
+
+		return true
+	}
+
+	checkColumn := func(board [][]byte, column int) bool {
+		array := make(map[byte]bool, 9)
+		for i := byte('1'); i <= byte('9'); i++ {
+			array[i] = false
+		}
+
+		for i := 0; i < len(board); i++ {
+			if board[i][column] == '.' {
+				continue
+			}
+
+			if v, ok := array[board[i][column]]; !ok || v {
+				return false
+			}
+
+			array[board[i][column]] = true
+
+		}
+
+		return true
+	}
+
+	checkBox := func(board [][]byte) bool {
+		for boxRow := 0; boxRow < 3; boxRow++ {
+			for boxCol := 0; boxCol < 3; boxCol++ {
+				// Карта для проверки уникальности цифр в подблоке 3x3
+				digits := make(map[byte]bool)
+				for i := 0; i < 3; i++ {
+					for j := 0; j < 3; j++ {
+
+						num := board[boxRow*3+i][boxCol*3+j]
+						if num == '.' {
+							continue
+						}
+
+						// Если цифра уже есть в карте, значит есть повторение
+						if digits[num] {
+							return false
+						}
+
+						// Записываем цифру как встреченную
+						digits[num] = true
+					}
+				}
+			}
+		}
+
+		return true
+	}
+
+	for i, row := range board {
+		if !checkRow(row) {
+			return false
+		}
+
+		if !checkColumn(board, i) {
+			return false
+		}
+	}
+
+	return checkBox(board)
+}
