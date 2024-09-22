@@ -452,8 +452,7 @@ func ClimbingsStairsIter(n int) int {
 	return result
 }
 
-func MergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
-
+func MergeSortedArray_88(nums1 []int, m int, nums2 []int, n int) {
 	i := m - 1 // nums1 iter
 	j := n - 1 // nums2 iter
 	for k := m + n - 1; k >= 0; k-- {
@@ -1266,4 +1265,21 @@ func spiralOrder(matrix [][]int) []int {
 	resultOrder = spiralOrderHelper(matrix, resultOrder, 0)
 
 	return resultOrder
+}
+
+func rotate_48(matrix [][]int) {
+	// Транспонирование
+	n := len(matrix)
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+		}
+	}
+
+	// Отражение по вертикальной оси
+	for i := 0; i < n; i++ {
+		for j := 0; j < n/2; j++ {
+			matrix[i][j], matrix[i][n-1-j] = matrix[i][n-1-j], matrix[i][j]
+		}
+	}
 }

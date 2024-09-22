@@ -431,3 +431,26 @@ func Test_spiralOrder(t *testing.T) {
 		})
 	}
 }
+
+func TestMergeSortedArray(t *testing.T) {
+	tests := []struct {
+		array1 []int
+		count1 int
+		array2 []int
+		count2 int
+		want   []int
+	}{
+		{[]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3, []int{1, 2, 2, 3, 5, 6}},
+		{[]int{1}, 1, []int{}, 0, []int{1}},
+		{[]int{0}, 0, []int{1}, 1, []int{1}},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			MergeSortedArray_88(tt.array1, tt.count1, tt.array2, tt.count2)
+			if !reflect.DeepEqual(tt.array1, tt.want) {
+				t.Errorf("MergeSortedArray(%v, %v, %v, %v) = %v; want = %v", tt.array1, tt.count1, tt.array2, tt.count2, tt.array1, tt.want)
+			}
+		})
+	}
+}
