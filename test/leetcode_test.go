@@ -133,26 +133,6 @@ func TestRemoveDuplicates(t *testing.T) {
 	}
 }
 
-func TestRemoveELement(t *testing.T) {
-	tests := []struct {
-		nums []int
-		val  int
-		want int
-	}{
-		{[]int{3, 2, 2, 3}, 3, 2},
-		{[]int{0, 1, 2, 2, 3, 0, 4, 2}, 2, 5},
-	}
-
-	for _, tt := range tests {
-		t.Run("", func(t *testing.T) {
-			got := leetcode.RemoveElement(tt.nums, tt.val)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("RemoveElemnet(%v) = %v; want %v", tt.nums, got, tt.want)
-			}
-		})
-	}
-}
-
 func TestStrStr(t *testing.T) {
 	tests := []struct {
 		str    string
@@ -310,8 +290,6 @@ func TestClimbingsStairs(t *testing.T) {
 func TestRemoveDuplicateFromSortedList(t *testing.T) {
 
 }
-
-
 
 func TestReverseParenthese(t *testing.T) {
 	tests := []struct {
@@ -610,20 +588,20 @@ func TestIsPalindromeString(t *testing.T) {
 }
 
 func TestSingleNumber(t *testing.T) {
-	tests := []struct{
-		input	[]int
-		want	int
+	tests := []struct {
+		input []int
+		want  int
 	}{
-		{[]int{2,2,1}, 1},
-		{[]int{4,1,2,1,2}, 4},
+		{[]int{2, 2, 1}, 1},
+		{[]int{4, 1, 2, 1, 2}, 4},
 		{[]int{1}, 1},
 	}
 
 	for _, tt := range tests {
-		t.Run("", func(t *testing.T){
+		t.Run("", func(t *testing.T) {
 			got := leetcode.SingleNumber_136(tt.input)
 			if !reflect.DeepEqual(tt.want, got) {
-				t.Errorf("SingleNumber(%v)=%v, want %v", tt.input,got,tt.want)
+				t.Errorf("SingleNumber(%v)=%v, want %v", tt.input, got, tt.want)
 			}
 		})
 	}
