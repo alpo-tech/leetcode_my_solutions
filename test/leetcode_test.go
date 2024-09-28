@@ -112,26 +112,7 @@ func TestValidParentheses(t *testing.T) {
 	}
 }
 
-func TestRemoveDuplicates(t *testing.T) {
-	tests := []struct {
-		input       []int
-		want        int
-		updateInput []int
-	}{
-		{[]int{1, 1, 2}, 2, []int{1, 2}},
-		{[]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, 5, []int{0, 1, 2, 3, 4}},
-	}
 
-	for _, tt := range tests {
-		t.Run("", func(t *testing.T) {
-			got := leetcode.RemoveDuplicatess(tt.input)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("RemoveDuplicates(%v) = %v; want %v", tt.input, got, tt.want)
-			}
-
-		})
-	}
-}
 
 func TestStrStr(t *testing.T) {
 	tests := []struct {

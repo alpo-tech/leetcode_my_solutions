@@ -464,15 +464,35 @@ func TestRemoveElement(t *testing.T) {
 		args args
 		want int
 	}{
-		{args: args{nums: []int{3,2,2,3}, val: 3}, want: 2},
-		{args: args{nums: []int{0,1,2,2,3,0,4,2}, val: 2}, want: 5},
-
+		{args: args{nums: []int{3, 2, 2, 3}, val: 3}, want: 2},
+		{args: args{nums: []int{0, 1, 2, 2, 3, 0, 4, 2}, val: 2}, want: 5},
 	}
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
 			if got := RemoveElement(tt.args.nums, tt.args.val); got != tt.want {
 				t.Errorf("RemoveElement() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func TestRemoveDuplicates(t *testing.T) {
+	tests := []struct {
+		input       []int
+		want        int
+		updateInput []int
+	}{
+		{[]int{1, 1, 2}, 2, []int{1, 2}},
+		{[]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, 5, []int{0, 1, 2, 3, 4}},
+	}
+
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			got := RemoveDuplicatess_26(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("RemoveDuplicates(%v) = %v; want %v", tt.input, got, tt.want)
+			}
+
 		})
 	}
 }
