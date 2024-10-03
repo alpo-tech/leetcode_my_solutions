@@ -1284,3 +1284,56 @@ func rotate_48(matrix [][]int) {
 		}
 	}
 }
+
+func canJump_55(nums []int) bool {
+	max := 0
+	for i := 0; i < len(nums); i++ {
+		if i > max {
+			return false
+		} else if nums[i]+i > max {
+			max = nums[i] + i
+		}
+	}
+
+	return true
+}
+
+type kv struct {
+	key int
+	val int
+}
+
+func frequencySort_1636(nums []int) []int {
+	freqArr := make(map[int]int)
+
+	for _, value := range nums {
+		freqArr[value]++
+	}
+
+	var sortedSlice []kv
+
+	for k, v := range freqArr {
+		sortedSlice = append(sortedSlice, kv{key: k, val: v})
+	}
+
+	sort.Slice(sortedSlice, func(i, j int) bool {
+		if sortedSlice[i].val == sortedSlice[j].val {
+			// When values are equal, sort by key in descending order
+			return sortedSlice[i].key > sortedSlice[j].key
+		}
+
+		return sortedSlice[i].val < sortedSlice[j].val
+	})
+
+	i := 0
+
+	for j := 0; j < len(sortedSlice); j++ {
+		for sortedSlice[j].val > 0 {
+			nums[i] = sortedSlice[j].key
+			i++
+			sortedSlice[j].val--
+		}
+	}
+
+	return nums
+}
