@@ -14,18 +14,25 @@ func twoSum(nums []int, target int) []int {
 	return []int{}
 }
 
+
+
+
+var Romans = map[byte]int{'I': 1, 'V': 5, 'X': 10, 'L':50, 'C':100, 'D':500, 'M': 1000}
+
+func romanToInt(s string) int {
+	summa := Romans[s[len(s) - 1]]
+	for  i := len(s) - 2; i >= 0; i-- {
+		if Romans[s[i + 1]] > Romans[s[i]] {
+			summa -= Romans[s[i]]
+		} else {
+			summa += Romans[s[i]]
+		}
+	}
+	return summa
+}
+
+
+
 func main() {
-
-	tests := []struct {
-		nums   []int
-		target int
-	}{
-		{nums: []int{2, 7, 11, 15}, target: 9},
-		{nums: []int{3, 2, 4}, target: 6},
-		{nums: []int{3, 3}, target: 6},
-	}
-
-	for _, test := range tests {
-		fmt.Println(twoSum(test.nums, test.target))
-	}
+	fmt.Println(romanToInt("MCMXCIV"))
 }
