@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package leetcode
 
 func reverseBitString(bytes []byte) string {
 	for i := 0; i < len(bytes)/2; i++ {
@@ -34,13 +32,5 @@ func getBitString(x int) string {
 }
 
 func findKthBit(n int, k int) byte {
-	s := getBitString(n)
-	fmt.Println(s)
-	return s[k - 1]
+	return getBitString(n)[k - 1]
 }
-
-func main() {
-	fmt.Println(string(findKthBit(4, 11)))
-	//fmt.Println(findKthBit(3, 1))
-}
-
