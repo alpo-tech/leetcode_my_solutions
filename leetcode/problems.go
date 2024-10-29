@@ -1337,3 +1337,14 @@ func frequencySort_1636(nums []int) []int {
 
 	return nums
 }
+
+func countSeniors(details []string) int {
+	result := 0
+	for _, val := range details {
+		if val[11] > '6' || (val[11] == '6' && val[12] != '0') {
+			result++
+		}
+	}
+
+	return result
+}
