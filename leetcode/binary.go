@@ -1,5 +1,7 @@
 package leetcode
 
+import "fmt"
+
 func reverseBitString(bytes []byte) string {
 	for i := 0; i < len(bytes)/2; i++ {
 		bytes[i], bytes[len(bytes)-1-i] = bytes[len(bytes)-1-i], bytes[i]
@@ -33,4 +35,26 @@ func getBitString(x int) string {
 
 func findKthBit(n int, k int) byte {
 	return getBitString(n)[k - 1]
+}
+
+
+func countBits_338(n int) []int {
+	result := make([]int, n + 1)
+
+	summaBits := func(value int) int {
+		valueStr := fmt.Sprintf("%b", value)
+		summa := 0
+		for _, num := range valueStr {
+			if num == '1' {
+				summa += 1
+			}
+		}
+		return summa
+	}
+
+	for i := 0; i <= n; i++ {
+		result[i] = summaBits(i)
+	}
+
+	return result
 }
