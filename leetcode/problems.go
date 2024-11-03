@@ -1348,3 +1348,36 @@ func countSeniors(details []string) int {
 
 	return result
 }
+
+func twoOutOfThree_2032(nums1 []int, nums2 []int, nums3 []int) []int {
+	result := make([]int, 0)
+	resultKey := make(map[int]int)
+
+	for _, value := range nums1 {
+		resultKey[value] =1
+	}
+
+	for _, value := range nums2 {
+		if key, ok := resultKey[value]; ok && key == 1 {
+			resultKey[value] = 10
+		} else if key != 10 {
+			resultKey[value] = 2
+		}
+	}
+
+	for _, value := range nums3 {
+		if key, ok := resultKey[value]; ok && (key == 1 || key == 2) {
+			resultKey[value] = 10	
+		} 
+	}
+
+	for key, value := range resultKey {
+		if value == 10 {
+			result = append(result, key)
+		}
+	}
+
+
+
+	return result
+}

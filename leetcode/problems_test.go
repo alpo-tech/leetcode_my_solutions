@@ -543,3 +543,25 @@ func Test_countSeniors(t *testing.T) {
 		})
 	}
 }
+
+func Test_twoOutOfThree_2032(t *testing.T) {
+	type args struct {
+		nums1 []int
+		nums2 []int
+		nums3 []int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		{args: args{nums1: []int{1, 1, 3, 2}, nums2: []int{2, 3}, nums3: []int{3}}, want: []int{3, 2}},
+		{args: args{nums1: []int{1, 2, 2}, nums2: []int{4, 3, 3}, nums3: []int{5}}, want: []int{}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := twoOutOfThree_2032(tt.args.nums1, tt.args.nums2, tt.args.nums3); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("twoOutOfThree_2032() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
