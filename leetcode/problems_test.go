@@ -565,3 +565,24 @@ func Test_twoOutOfThree_2032(t *testing.T) {
 		})
 	}
 }
+
+func Test_uncommonFromSentences(t *testing.T) {
+	type args struct {
+		s1 string
+		s2 string
+	}
+	tests := []struct {
+		args args
+		want []string
+	}{
+		{args: args{"this apple is sweet", "this apple is sour"}, want: []string{"sweet", "sour"}},
+		{args: args{"apple apple", "banana"}, want: []string{"banana"}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := uncommonFromSentences(tt.args.s1, tt.args.s2); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("uncommonFromSentences() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

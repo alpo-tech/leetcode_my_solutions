@@ -1354,7 +1354,7 @@ func twoOutOfThree_2032(nums1 []int, nums2 []int, nums3 []int) []int {
 	resultKey := make(map[int]int)
 
 	for _, value := range nums1 {
-		resultKey[value] =1
+		resultKey[value] = 1
 	}
 
 	for _, value := range nums2 {
@@ -1367,8 +1367,8 @@ func twoOutOfThree_2032(nums1 []int, nums2 []int, nums3 []int) []int {
 
 	for _, value := range nums3 {
 		if key, ok := resultKey[value]; ok && (key == 1 || key == 2) {
-			resultKey[value] = 10	
-		} 
+			resultKey[value] = 10
+		}
 	}
 
 	for key, value := range resultKey {
@@ -1377,7 +1377,38 @@ func twoOutOfThree_2032(nums1 []int, nums2 []int, nums3 []int) []int {
 		}
 	}
 
+	return result
+}
 
+func uncommonFromSentences(s1 string, s2 string) []string {
+	result := make([]string, 0)
+
+	firstWords := strings.Split(s1, " ")
+	secondWords := strings.Split(s2, " ")
+
+	mapWords := make(map[string]int)
+
+	for _, value := range firstWords {
+		if key, ok := mapWords[value]; !ok {
+			mapWords[value] = 1
+		} else if key == 1 {
+			mapWords[value] = 0
+		}
+	}
+
+	for _, value := range secondWords {
+		if key, ok := mapWords[value]; !ok {
+			mapWords[value] = 2
+		} else if key == 1 || key == 2 {
+			mapWords[value] = 0
+		}
+	}
+
+	for key, value := range mapWords {
+		if value == 1 || value == 2 {
+			result = append(result, key)
+		}
+	}
 
 	return result
 }
