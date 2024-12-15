@@ -36,11 +36,32 @@ func getBitString(x int) string {
 func findKthBit(n int, k int) byte {
 	s := getBitString(n)
 	fmt.Println(s)
-	return s[k - 1]
+	return s[k-1]
+}
+
+func merge(nums1 []int, m int, nums2 []int, n int) {
+	var iter1 = m - 1
+	var iter2 = n - 1
+
+	for i := m + n - 1; i >= 0; i-- {
+		if iter1 < 0 {
+			nums1[i] = nums2[iter2]
+			iter2--
+			continue
+		} else if iter2 < 0 {
+			nums1[i] = nums1[iter1]
+			iter1--
+			continue
+		}
+
+		if nums1[iter1] > nums2[iter2] {
+
+		}
+	}
+
 }
 
 func main() {
 	fmt.Println(string(findKthBit(4, 11)))
 	//fmt.Println(findKthBit(3, 1))
 }
-
