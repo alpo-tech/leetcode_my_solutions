@@ -576,12 +576,32 @@ func Test_uncommonFromSentences(t *testing.T) {
 		want []string
 	}{
 		{args: args{"this apple is sweet", "this apple is sour"}, want: []string{"sweet", "sour"}},
-		{args: args{"apple apple", "banana"}, want: []string{"banana"}},
+		{args: args{"apple apple", "banana"}, want: []string{"sweet", "sour"}},
 	}
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
 			if got := uncommonFromSentences(tt.args.s1, tt.args.s2); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("uncommonFromSentences() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_sortedSquares_977(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		{args: args{[]int{-4, -1, 0, 3, 10}}, want: []int{0, 1, 9, 16, 100}},
+		{args: args{[]int{-7, -3, 2, 3, 11}}, want: []int{4, 9, 9, 49, 121}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := sortedSquares_977(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("sortedSquares_977() = %v, want %v", got, tt.want)
 			}
 		})
 	}

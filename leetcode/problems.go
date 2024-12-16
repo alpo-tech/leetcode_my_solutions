@@ -1412,3 +1412,15 @@ func uncommonFromSentences(s1 string, s2 string) []string {
 
 	return result
 }
+
+func sortedSquares_977(nums []int) []int {
+	result := make([]int, len(nums))
+	sort.Slice(nums, func(i, j int) bool {
+			return nums[i] * nums[i] < nums[j] * nums[j]
+		})
+	for i := range nums {
+		result[i] = nums[i] * nums[i]
+	}
+
+	return result
+}
