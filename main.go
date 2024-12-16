@@ -55,10 +55,13 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 		}
 
 		if nums1[iter1] > nums2[iter2] {
-
+			nums1[i] = nums1[iter1]
+			iter1--
+		} else {
+			nums1[i] = nums2[iter2]
+			iter2--
 		}
 	}
-
 }
 
 func main() {
