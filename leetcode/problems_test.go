@@ -606,3 +606,25 @@ func Test_sortedSquares_977(t *testing.T) {
 		})
 	}
 }
+
+func Test_getFinalState_3264(t *testing.T) {
+	type args struct {
+		nums       []int
+		k          int
+		multiplier int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		{args: args{[]int{2, 1, 3, 5, 6}, 5, 2}, want: []int{8, 4, 6, 5, 6}},
+		{args: args{[]int{1, 2}, 3, 4}, want: []int{16, 8}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := getFinalState_3264(tt.args.nums, tt.args.k, tt.args.multiplier); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getFinalState() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

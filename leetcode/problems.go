@@ -1416,11 +1416,34 @@ func uncommonFromSentences(s1 string, s2 string) []string {
 func sortedSquares_977(nums []int) []int {
 	result := make([]int, len(nums))
 	sort.Slice(nums, func(i, j int) bool {
-			return nums[i] * nums[i] < nums[j] * nums[j]
-		})
+		return nums[i]*nums[i] < nums[j]*nums[j]
+	})
 	for i := range nums {
 		result[i] = nums[i] * nums[i]
 	}
 
 	return result
+}
+
+func getFinalState_3264(nums []int, k int, multiplier int) []int {
+	findMinimal := func(nums []int) int {
+		indexMin := 0
+		valueMin := nums[indexMin]
+
+		for i, v := range nums {
+			if v < valueMin {
+				indexMin = i
+				valueMin = v
+			}
+		}
+		return indexMin
+	}
+
+	for k > 0 {
+		k--
+		indexMin := findMinimal(nums)
+		nums[indexMin] *= multiplier
+	}
+
+	return nums
 }
