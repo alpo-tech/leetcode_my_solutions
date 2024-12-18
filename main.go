@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func reverseBitString(bytes []byte) string {
 	for i := 0; i < len(bytes)/2; i++ {
@@ -9,6 +11,66 @@ func reverseBitString(bytes []byte) string {
 
 	return string(bytes)
 }
+
+
+type List struct {
+	val  int
+	next *List
+}
+
+type MyHashSet struct {
+	set *List
+}
+
+func Constructor() MyHashSet {
+	return MyHashSet{&List{-1, nil}}
+}
+
+func (s *MyHashSet) Add(key int) {
+	begin := s.set
+	for begin.next != nil {
+		if begin.val == key {
+			return
+		}
+		begin = begin.next
+	}
+    if begin.val == key {
+        return
+    }
+	begin.next = &List{val: key}
+}
+
+func (s *MyHashSet) Remove(key int) {
+	begin := s.set
+	prev := s.set
+	for begin.next != nil {
+		if begin.val == key {
+			prev.next = begin.next
+			return
+		}
+		prev = begin
+		begin = begin.next
+	}
+    if begin.val == key {
+        prev.next = nil
+    }
+}
+
+func (s *MyHashSet) Contains(key int) bool {
+	begin := s.set
+	for begin.next != nil {
+		if begin.val == key {
+			return true
+		}
+		begin = begin.next
+	}
+    if begin.val == key {
+        return true
+    }
+
+	return false
+}
+
 
 func invertBitString(str string) []byte {
 	result := make([]byte, len(str))
@@ -65,6 +127,11 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 }
 
 func main() {
-	fmt.Println(string(findKthBit(4, 11)))
-	//fmt.Println(findKthBit(3, 1))
+	mySet := Construct()
+	mySet.Add(1)
+	mySet.Add(2)
+	mySet.Add(3)
+	fmt.Println(mySet.Contains(2))
+	mySet.Remove(2)
+	fmt.Println(mySet.Contains(2))
 }
