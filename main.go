@@ -12,7 +12,6 @@ func reverseBitString(bytes []byte) string {
 	return string(bytes)
 }
 
-
 type List struct {
 	val  int
 	next *List
@@ -34,9 +33,9 @@ func (s *MyHashSet) Add(key int) {
 		}
 		begin = begin.next
 	}
-    if begin.val == key {
-        return
-    }
+	if begin.val == key {
+		return
+	}
 	begin.next = &List{val: key}
 }
 
@@ -51,9 +50,9 @@ func (s *MyHashSet) Remove(key int) {
 		prev = begin
 		begin = begin.next
 	}
-    if begin.val == key {
-        prev.next = nil
-    }
+	if begin.val == key {
+		prev.next = nil
+	}
 }
 
 func (s *MyHashSet) Contains(key int) bool {
@@ -64,13 +63,12 @@ func (s *MyHashSet) Contains(key int) bool {
 		}
 		begin = begin.next
 	}
-    if begin.val == key {
-        return true
-    }
+	if begin.val == key {
+		return true
+	}
 
 	return false
 }
-
 
 func invertBitString(str string) []byte {
 	result := make([]byte, len(str))
@@ -126,12 +124,31 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	}
 }
 
+func finalPrices_1475(prices []int) []int {
+	minArr := func(array []int, value int) int {
+		for _, v := range array {
+			if v <= value {
+				return v
+			}
+		}
+		return value + 1
+	}
+
+	for index, value := range prices {
+		nextPrice := value + 1
+		if index+1 != len(prices) {
+			nextPrice = minArr(prices[index+1:], value)
+		}
+		if nextPrice <= value {
+			prices[index] = value - nextPrice
+		}
+	}
+
+	return prices
+}
+
 func main() {
-	mySet := Construct()
-	mySet.Add(1)
-	mySet.Add(2)
-	mySet.Add(3)
-	fmt.Println(mySet.Contains(2))
-	mySet.Remove(2)
-	fmt.Println(mySet.Contains(2))
+	fmt.Println(finalPrices_1475([]int{8, 4, 6, 2, 3}))
+	fmt.Println(finalPrices_1475([]int{1, 2, 3, 4, 5}))
+	fmt.Println(finalPrices_1475([]int{10, 1, 1, 6}))
 }
