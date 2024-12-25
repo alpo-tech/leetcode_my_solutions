@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+
+	"leetcode.com/leetcode"
 )
 
 func reverseBitString(bytes []byte) string {
@@ -151,4 +153,10 @@ func main() {
 	fmt.Println(finalPrices_1475([]int{8, 4, 6, 2, 3}))
 	fmt.Println(finalPrices_1475([]int{1, 2, 3, 4, 5}))
 	fmt.Println(finalPrices_1475([]int{10, 1, 1, 6}))
+
+
+	list1 := leetcode.CreateList([]int{9,9,9,9,9,9,9})
+	list2 := leetcode.CreateList([]int{9,9,9,9})
+	leetcode.PrintList(leetcode.AddTwoNumbers(list1, list2))
+	
 }

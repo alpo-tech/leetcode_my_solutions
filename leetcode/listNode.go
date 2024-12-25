@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"math"
 )
 
 type ListNode struct {
@@ -239,4 +240,78 @@ func ReverseBetween(head *ListNode, left int, right int) *ListNode {
 	return dummy.Next
 }
 
+func getDecimalValue_1290(head *ListNode) int {
+	arraybit := make([]int, 0)
 
+	for head != nil {
+		arraybit = append(arraybit, head.Val)
+		head = head.Next
+	}
+
+	result := 0
+	for i := len(arraybit) - 1; i >= 0; i-- {
+		dig := len(arraybit) - i - 1
+		result += int(arraybit[i] * int(math.Pow(2, float64(dig))))
+	}
+
+	return result
+}
+
+func middleNode_876(head *ListNode) *ListNode {
+	first := head
+	second := head
+
+	for second != nil {
+		second = second.Next
+		if second == nil {
+			break
+		}
+		first = first.Next
+		second = second.Next
+	}
+	return first
+}
+
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	r1 := make([]int, 0)
+	r2 := make([]int, 0)
+
+	i1 := l1
+	for i1 != nil {
+		r1 = append(r1, i1.Val)
+		i1 = i1.Next
+	}
+
+	i2 := l2
+	for i2 != nil {
+		r2 = append(r2, i2.Val)
+		i2 = i2.Next
+	}
+
+	if len(r1) > len(r2) {
+		for len(r1) != len(r2) {
+			r2 = append(r2, 0)
+		}
+	}
+
+	if len(r1) < len(r2) { 
+		for len(r1) != len(r2) {
+			r1 = append(r1, 0)
+		}
+	}
+
+	r := make([]int, len(r1))
+	value := 0
+	for i := 0; i < len(r1); i++ {
+		value += r1[i] + r2[i]
+		r[i] = value % 10
+		value /= 10
+	}
+
+	if value != 0 {
+		r = append(r, value)
+	}
+
+	return CreateList(r)
+
+}
