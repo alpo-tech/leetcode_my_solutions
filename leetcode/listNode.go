@@ -315,3 +315,27 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return CreateList(r)
 
 }
+
+func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
+	countNode := 0
+	begin := head
+	for begin != nil {
+		countNode += 1
+		begin = begin.Next
+	}
+
+	removeNth := countNode - n
+	if removeNth == 0 {
+		return head.Next
+	}
+	begin = head
+	previous := head
+	for removeNth != 0 {
+		removeNth--
+		previous = begin
+		begin = begin.Next
+	}
+	
+	previous.Next = begin.Next
+	return head
+}

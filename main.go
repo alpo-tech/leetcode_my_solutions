@@ -154,9 +154,12 @@ func main() {
 	fmt.Println(finalPrices_1475([]int{1, 2, 3, 4, 5}))
 	fmt.Println(finalPrices_1475([]int{10, 1, 1, 6}))
 
-
-	list1 := leetcode.CreateList([]int{9,9,9,9,9,9,9})
-	list2 := leetcode.CreateList([]int{9,9,9,9})
+	list1 := leetcode.CreateList([]int{1, 2, 3, 4, 5, 6, 7})
+	list2 := leetcode.CreateList([]int{9, 9, 9, 9})
 	leetcode.PrintList(leetcode.AddTwoNumbers(list1, list2))
-	
+
+	test := leetcode.RemoveNthFromEnd(list1, 1)
+	fmt.Println()
+	leetcode.PrintList(test)
+
 }
