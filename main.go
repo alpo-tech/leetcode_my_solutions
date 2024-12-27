@@ -158,8 +158,13 @@ func main() {
 	list2 := leetcode.CreateList([]int{9, 9, 9, 9})
 	leetcode.PrintList(leetcode.AddTwoNumbers(list1, list2))
 
-	test := leetcode.RemoveNthFromEnd(list1, 1)
+	test := leetcode.RemoveNthFromEnd_19(list1, 1)
 	fmt.Println()
 	leetcode.PrintList(test)
+
+	list3 := leetcode.CreateList([]int{1, 2, 3, 4})
+	list2A := leetcode.SwapPairs_24(list3)
+	fmt.Println()
+	leetcode.PrintList(list2A)
 
 }

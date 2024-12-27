@@ -294,7 +294,7 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 	}
 
-	if len(r1) < len(r2) { 
+	if len(r1) < len(r2) {
 		for len(r1) != len(r2) {
 			r1 = append(r1, 0)
 		}
@@ -316,7 +316,7 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 }
 
-func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
+func RemoveNthFromEnd_19(head *ListNode, n int) *ListNode {
 	countNode := 0
 	begin := head
 	for begin != nil {
@@ -335,7 +335,36 @@ func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 		previous = begin
 		begin = begin.Next
 	}
-	
+
 	previous.Next = begin.Next
 	return head
+}
+
+func SwapPairs_24(head *ListNode) *ListNode {
+
+	first := head
+	if first == nil {
+		return head
+	}
+
+	second := head.Next
+	if second == nil {
+		return head
+	}
+
+	prev := &ListNode{-1, head}
+	result := prev
+	for first != nil && second != nil {
+		prev.Next = second
+		first.Next = second.Next
+		second.Next = first
+
+		prev = first
+		first = first.Next
+		if first != nil {
+			second = first.Next
+		}
+	}
+
+	return result.Next
 }
