@@ -368,3 +368,37 @@ func SwapPairs_24(head *ListNode) *ListNode {
 
 	return result.Next
 }
+
+func rotateHelper(head *ListNode) *ListNode {
+	begin := head
+	previous := &ListNode{-1, begin}
+	for begin.Next != nil {
+		previous = begin
+		begin = begin.Next
+	}
+	
+	previous.Next = nil
+	begin.Next = head
+	return begin
+}
+
+func RotateRight(head *ListNode, k int) *ListNode {
+	newHead := head
+  if newHead == nil {
+	  return newHead
+  }
+
+	n := 1
+	for head.Next != nil {
+		head = head.Next
+		n++
+	}
+
+	k = k%n
+	for k > 0 {
+		k--
+		newHead = rotateHelper(newHead)
+	}
+
+	return newHead
+}

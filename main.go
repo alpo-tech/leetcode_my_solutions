@@ -167,4 +167,10 @@ func main() {
 	fmt.Println()
 	leetcode.PrintList(list2A)
 
+
+	fmt.Println()
+	rotateList := leetcode.CreateList([]int{1,2,3,4,5,6})
+	rotateList = leetcode.RotateRight(rotateList, 2)
+	leetcode.PrintList(rotateList)
+
 }
