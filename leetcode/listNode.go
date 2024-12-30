@@ -376,7 +376,7 @@ func rotateHelper(head *ListNode) *ListNode {
 		previous = begin
 		begin = begin.Next
 	}
-	
+
 	previous.Next = nil
 	begin.Next = head
 	return begin
@@ -384,9 +384,9 @@ func rotateHelper(head *ListNode) *ListNode {
 
 func RotateRight(head *ListNode, k int) *ListNode {
 	newHead := head
-  if newHead == nil {
-	  return newHead
-  }
+	if newHead == nil {
+		return newHead
+	}
 
 	n := 1
 	for head.Next != nil {
@@ -394,11 +394,81 @@ func RotateRight(head *ListNode, k int) *ListNode {
 		n++
 	}
 
-	k = k%n
+	k = k % n
 	for k > 0 {
 		k--
 		newHead = rotateHelper(newHead)
 	}
 
 	return newHead
+}
+
+func DeleteDuplicatesFromList_83(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	first := head
+	second := head.Next
+
+	for second.Next != nil {
+		if first.Val == second.Val {
+			second = second.Next
+		} else {
+			first.Next = second
+			first = second
+			second = second.Next
+		}
+	}
+
+	if first.Val == second.Val {
+		first.Next = nil
+	} else {
+		first.Next = second
+	}
+
+	return head
+}
+
+func DeleteDuplicatesFromList_82(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	previous := &ListNode{-1, nil}
+	result := previous
+	first := head
+	second := head.Next
+	checkLast := true
+
+	for second != nil {
+		if first.Val != second.Val {
+			previous.Next = first
+			previous = first
+			previous.Next = nil
+			first = second
+			second = second.Next
+		} else {
+			previous.Next = nil
+			for second != nil && first.Val == second.Val {
+				second = second.Next
+			}
+			if second != nil {
+				checkLast = true
+				first = second
+				second = second.Next
+			} else {
+				checkLast = false
+			}
+		}
+	}
+
+	if previous.Val != first.Val && checkLast {
+		previous.Next = first
+		if first.Next != nil && first.Val == first.Next.Val {
+			first.Next = nil
+		}
+	}
+
+	return result.Next
 }

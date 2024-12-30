@@ -167,10 +167,15 @@ func main() {
 	fmt.Println()
 	leetcode.PrintList(list2A)
 
-
 	fmt.Println()
-	rotateList := leetcode.CreateList([]int{1,2,3,4,5,6})
+	rotateList := leetcode.CreateList([]int{1, 2, 3, 4, 5, 6})
 	rotateList = leetcode.RotateRight(rotateList, 2)
 	leetcode.PrintList(rotateList)
+
+	fmt.Println()
+	fmt.Println()
+	list83prepare := leetcode.CreateList([]int{0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 5, 6, 6})
+	list83 := leetcode.DeleteDuplicatesFromList_82(list83prepare)
+	leetcode.PrintList(list83)
 
 }
