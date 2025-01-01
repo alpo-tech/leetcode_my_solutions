@@ -77,3 +77,25 @@ func Test_middleNode(t *testing.T) {
 		})
 	}
 }
+
+func TestPartition_86(t *testing.T) {
+	type args struct {
+		head *ListNode
+		x    int
+	}
+	list1 := CreateList([]int{1,4,3,2,5,2})
+	list1Answer := CreateList([]int{1,2,2,4,3,5})
+	tests := []struct {
+		args args
+		want *ListNode
+	}{
+		{args: args{list1, 3}, want: list1Answer},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := Partition_86(tt.args.head, tt.args.x); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Partition_86() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

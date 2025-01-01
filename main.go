@@ -178,4 +178,10 @@ func main() {
 	list83 := leetcode.DeleteDuplicatesFromList_82(list83prepare)
 	leetcode.PrintList(list83)
 
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	list86 := leetcode.CreateList([]int{1, 4, 3, 2, 5, 2})
+	list86_A := leetcode.Partition_86(list86, 3)
+	leetcode.PrintList(list86_A)
 }

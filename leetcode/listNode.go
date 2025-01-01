@@ -472,3 +472,33 @@ func DeleteDuplicatesFromList_82(head *ListNode) *ListNode {
 
 	return result.Next
 }
+
+func Partition_86(head *ListNode, x int) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	first := head
+	second := &ListNode{-1, nil}
+	newHead := second
+	for first != nil {
+		if first.Val < x {
+			tmp := &ListNode{first.Val, nil}
+			second.Next = tmp
+			second = second.Next
+
+		}
+		first = first.Next
+	}
+
+	first = head
+	for first != nil {
+		if first.Val >= x {
+			tmp := &ListNode{first.Val, nil}
+			second.Next = tmp
+			second = second.Next
+		}
+		first = first.Next
+	}
+	return newHead.Next
+}
