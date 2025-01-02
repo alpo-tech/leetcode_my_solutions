@@ -477,28 +477,26 @@ func Partition_86(head *ListNode, x int) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
+	
+	before := &ListNode{}
+	after := &ListNode{}
 
-	first := head
-	second := &ListNode{-1, nil}
-	newHead := second
-	for first != nil {
-		if first.Val < x {
-			tmp := &ListNode{first.Val, nil}
-			second.Next = tmp
-			second = second.Next
+	curr_before := before
+	curr_after := after
 
+	for head != nil {
+		if head.Val < x {
+			curr_before.Next = head
+			curr_before = curr_before.Next
+		} else {
+			curr_after.Next = head
+			curr_after = curr_after.Next
 		}
-		first = first.Next
+		head = head.Next
 	}
 
-	first = head
-	for first != nil {
-		if first.Val >= x {
-			tmp := &ListNode{first.Val, nil}
-			second.Next = tmp
-			second = second.Next
-		}
-		first = first.Next
-	}
-	return newHead.Next
+	curr_before.Next = after.Next
+	curr_after.Next = nil
+
+	return before.Next
 }
