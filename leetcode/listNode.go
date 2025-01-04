@@ -71,7 +71,7 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	return result.Next
 }
 
-func HasCycle(head *ListNode) bool {
+func HasCycle_141(head *ListNode) bool {
 	if head == nil {
 		return false
 	}
