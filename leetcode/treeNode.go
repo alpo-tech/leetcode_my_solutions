@@ -1,6 +1,7 @@
 package leetcode
 
 import (
+	"fmt"
 	"math"
 	"strconv"
 )
@@ -9,6 +10,34 @@ type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
+}
+
+func PrintTree(root *TreeNode) {
+	arr := make([]int, 0)
+	var helperPrint func(*TreeNode, *[]int)
+	helperPrint = func(root *TreeNode, array *[]int) {
+		*array = append(*array, root.Val)
+
+		if root.Left == nil && root.Right == nil {
+			return
+		}
+
+		if root.Left != nil {
+			helperPrint(root.Left, array)
+		} else {
+			*array = append(*array, -1)
+		}
+		if root.Right != nil {
+			helperPrint(root.Right, array)
+		} else {
+			*array = append(*array, -1)
+		}
+	}
+	if root != nil {
+		helperPrint(root, &arr)
+	}
+
+	fmt.Println(arr)
 }
 
 func CreateTreeNode(array []*int) *TreeNode {
@@ -266,50 +295,48 @@ func CountNodes_222(root *TreeNode) int {
 	return 1 + CountNodes_222(root.Left) + CountNodes_222(root.Right)
 }
 
+func BinaryTreePathsHelper(root *TreeNode, str string) []string {
 
-
- func BinaryTreePathsHelper(root *TreeNode, str string) []string {
-	
 	commonStr := str + "->" + strconv.Itoa(root.Val)
 
-    if root.Left == nil && root.Right == nil {
-        return []string{commonStr}
-    }
+	if root.Left == nil && root.Right == nil {
+		return []string{commonStr}
+	}
 
+	if root.Left == nil {
+		return BinaryTreePathsHelper(root.Right, commonStr)
+	}
 
-    if root.Left == nil {
-        return BinaryTreePathsHelper(root.Right, commonStr)
-    }
+	if root.Right == nil {
+		return BinaryTreePathsHelper(root.Left, commonStr)
+	}
 
+	return append(BinaryTreePathsHelper(root.Right, commonStr), BinaryTreePathsHelper(root.Left, commonStr)...)
 
-    if root.Right == nil {
-        return BinaryTreePathsHelper(root.Left, commonStr)
-    }
-
-
-    return append(BinaryTreePathsHelper(root.Right, commonStr),  BinaryTreePathsHelper(root.Left, commonStr)...)
-    
 }
 
 func BinaryTreePaths(root *TreeNode) []string {
 
 	if root == nil {
-		return []string{} 
+		return []string{}
 	}
 
 	result := make([]string, 0)
-    
-    if root.Left == nil && root.Right == nil {
-        return append(result, strconv.Itoa(root.Val))
-    }
 
-    if root.Left != nil {
-        result = append(result, BinaryTreePathsHelper(root.Left, strconv.Itoa(root.Val))... )
-    }
+	if root.Left == nil && root.Right == nil {
+		return append(result, strconv.Itoa(root.Val))
+	}
 
-    if root.Right != nil {
-	    result = append(result, BinaryTreePathsHelper(root.Right, strconv.Itoa(root.Val))... )
-    }
+	if root.Left != nil {
+		result = append(result, BinaryTreePathsHelper(root.Left, strconv.Itoa(root.Val))...)
+	}
+
+	if root.Right != nil {
+		result = append(result, BinaryTreePathsHelper(root.Right, strconv.Itoa(root.Val))...)
+	}
 
 	return result
+}
+
+func Flatten(root *TreeNode) {
 }

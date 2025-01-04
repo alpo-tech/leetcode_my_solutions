@@ -76,33 +76,20 @@ func HasCycle(head *ListNode) bool {
 		return false
 	}
 
-	first := head.Next
-	if first == nil {
-		return false
-	}
+	first, second := head, head.Next
 
-	second := first.Next
-	if second == nil {
-		return false
-	}
-
-	for first != nil && second != nil {
+	for second != nil {
 		if first == second {
 			return true
 		}
 
 		first = first.Next
-		if first == nil {
-			return false
-		}
 
 		second = second.Next
 		if second == nil {
 			return false
 		}
-
 		second = second.Next
-
 	}
 
 	return false

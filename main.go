@@ -150,38 +150,7 @@ func finalPrices_1475(prices []int) []int {
 }
 
 func main() {
-	fmt.Println(finalPrices_1475([]int{8, 4, 6, 2, 3}))
-	fmt.Println(finalPrices_1475([]int{1, 2, 3, 4, 5}))
-	fmt.Println(finalPrices_1475([]int{10, 1, 1, 6}))
+	root := leetcode.CreateTreeNode([]*int{leetcode.IntPtr(1), leetcode.IntPtr(2), leetcode.IntPtr(5), leetcode.IntPtr(3), leetcode.IntPtr(4), nil, leetcode.IntPtr(6)})
+	leetcode.PrintTree(root)
 
-	list1 := leetcode.CreateList([]int{1, 2, 3, 4, 5, 6, 7})
-	list2 := leetcode.CreateList([]int{9, 9, 9, 9})
-	leetcode.PrintList(leetcode.AddTwoNumbers(list1, list2))
-
-	test := leetcode.RemoveNthFromEnd_19(list1, 1)
-	fmt.Println()
-	leetcode.PrintList(test)
-
-	list3 := leetcode.CreateList([]int{1, 2, 3, 4})
-	list2A := leetcode.SwapPairs_24(list3)
-	fmt.Println()
-	leetcode.PrintList(list2A)
-
-	fmt.Println()
-	rotateList := leetcode.CreateList([]int{1, 2, 3, 4, 5, 6})
-	rotateList = leetcode.RotateRight(rotateList, 2)
-	leetcode.PrintList(rotateList)
-
-	fmt.Println()
-	fmt.Println()
-	list83prepare := leetcode.CreateList([]int{0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 5, 6, 6})
-	list83 := leetcode.DeleteDuplicatesFromList_82(list83prepare)
-	leetcode.PrintList(list83)
-
-	fmt.Println()
-	fmt.Println()
-	fmt.Println()
-	list86 := leetcode.CreateList([]int{1, 4, 3, 2, 5, 2})
-	list86_A := leetcode.Partition_86(list86, 3)
-	leetcode.PrintList(list86_A)
 }
