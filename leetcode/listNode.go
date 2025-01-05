@@ -464,7 +464,7 @@ func Partition_86(head *ListNode, x int) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	
+
 	before := &ListNode{}
 	after := &ListNode{}
 
@@ -486,4 +486,50 @@ func Partition_86(head *ListNode, x int) *ListNode {
 	curr_after.Next = nil
 
 	return before.Next
+}
+
+func DetectCycle_142(head *ListNode) *ListNode {
+	storage := make(map[*ListNode]bool)
+	for head != nil {
+		if _, ok := storage[head]; !ok {
+			storage[head] = true
+			head = head.Next
+		} else {
+			return head
+		}
+	}
+	return nil
+}
+
+func DetectCycle_142_v2(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return nil
+	}
+	first := head
+	second := head
+
+	for second != nil {
+		first = first.Next
+		second = second.Next
+		if second == nil {
+			return nil
+		}
+		second = second.Next
+		if second == first {
+			break
+		}
+	}
+
+	if second == nil {
+		return nil
+	}
+
+	first = head
+	for first != second {
+		first = first.Next
+		second = second.Next
+	}
+
+	return first
+
 }

@@ -150,7 +150,6 @@ func finalPrices_1475(prices []int) []int {
 }
 
 func main() {
-	root := leetcode.CreateTreeNode([]*int{leetcode.IntPtr(1), leetcode.IntPtr(2), leetcode.IntPtr(5), leetcode.IntPtr(3), leetcode.IntPtr(4), nil, leetcode.IntPtr(6)})
-	leetcode.PrintTree(root)
+		
 
 }
