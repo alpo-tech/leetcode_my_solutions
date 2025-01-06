@@ -628,3 +628,24 @@ func Test_getFinalState_3264(t *testing.T) {
 		})
 	}
 }
+
+func TestFindDuplicate_287(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{[]int{1, 3, 4, 2, 2}}, want: 2},
+		{args: args{[]int{3, 1, 3, 4, 2}}, want: 3},
+		{args: args{[]int{3, 3, 3, 3, 3}}, want: 3},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := FindDuplicate_287(tt.args.nums); got != tt.want {
+				t.Errorf("FindDuplicate_287() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

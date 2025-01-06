@@ -1447,3 +1447,21 @@ func getFinalState_3264(nums []int, k int, multiplier int) []int {
 
 	return nums
 }
+
+func FindDuplicate_287(nums []int) int {
+	first := nums[nums[0]]
+	second := nums[nums[nums[0]]]
+
+	for first != second {
+		first = nums[first]
+		second = nums[nums[second]]
+	}
+
+	first = nums[0]
+	for first != second {
+		first = nums[first]
+		second = nums[second]
+	}
+
+	return first
+}
