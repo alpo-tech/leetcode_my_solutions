@@ -1465,3 +1465,14 @@ func FindDuplicate_287(nums []int) int {
 
 	return first
 }
+
+func MissingNumber_268(nums []int) int {
+	lenNums := len(nums) + 1
+	summaNums := lenNums * (lenNums - 1) / 2
+	summaNumsOrig := 0
+	for _, value := range nums {
+		summaNumsOrig += value
+	}
+
+	return summaNums - summaNumsOrig
+}

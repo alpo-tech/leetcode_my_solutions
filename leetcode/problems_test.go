@@ -649,3 +649,24 @@ func TestFindDuplicate_287(t *testing.T) {
 		})
 	}
 }
+
+func TestMissingNumber_268(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{[]int{3, 0, 1}}, want: 2},
+		{args: args{[]int{0, 1}}, want: 2},
+		{args: args{[]int{9, 6, 4, 2, 3, 5, 7, 0, 1}}, want: 8},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := MissingNumber_268(tt.args.nums); got != tt.want {
+				t.Errorf("MissingNumber_268() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

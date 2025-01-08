@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"leetcode.com/leetcode"
 )
 
 func reverseBitString(bytes []byte) string {
@@ -150,6 +148,5 @@ func finalPrices_1475(prices []int) []int {
 }
 
 func main() {
-		
 
 }
