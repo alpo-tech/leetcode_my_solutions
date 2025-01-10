@@ -670,3 +670,24 @@ func TestMissingNumber_268(t *testing.T) {
 		})
 	}
 }
+
+func Test_findErrorNums_645(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		{args: args{[]int{1, 2, 2, 4}}, want: []int{2, 3}},
+		{args: args{[]int{1, 1}}, want: []int{1, 2}},
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := findErrorNums_645(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("findErrorNums_645() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

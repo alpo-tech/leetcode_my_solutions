@@ -1476,3 +1476,24 @@ func MissingNumber_268(nums []int) int {
 
 	return summaNums - summaNumsOrig
 }
+
+func findErrorNums_645(nums []int) []int {
+	freq := make([]int, len(nums)+1)
+	for _, value := range nums {
+		freq[value] += 1
+	}
+
+	var twiceValue, noValue int
+	for index, value := range freq[1:] {
+		if value == 0 {
+			noValue = index + 1
+		}
+
+		if value == 2 {
+			twiceValue = index + 1
+		}
+	}
+
+	return []int{twiceValue, noValue}
+
+}
