@@ -533,3 +533,51 @@ func DetectCycle_142_v2(head *ListNode) *ListNode {
 	return first
 
 }
+
+func deleteNode_237(node *ListNode) {
+	nextNode := node.Next
+	node.Val = nextNode.Val
+	node.Next = nextNode.Next
+}
+
+func modifiedList_3217(nums []int, head *ListNode) *ListNode {
+	dictNums := make(map[int]bool)
+
+	for _, val := range nums {
+		dictNums[val] = true
+	}
+
+
+	for {
+		if head == nil {
+			return nil
+		}
+
+		if _, ok := dictNums[head.Val]; ok {
+			head = head.Next
+			continue
+		}
+
+		break
+	}
+
+
+	previous := head
+	first := head.Next
+	head.Next = nil
+
+	for first != nil {
+		if _, ok := dictNums[first.Val]; !ok {
+			previous.Next = first
+			previous = previous.Next
+			first = first.Next
+			previous.Next = nil
+		} else {
+		  first = first.Next
+		}
+	}
+
+
+	return head
+
+}
