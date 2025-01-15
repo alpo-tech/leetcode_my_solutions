@@ -159,3 +159,28 @@ func Test_modifiedList_3217(t *testing.T) {
 		})
 	}
 }
+
+func Test_removeNodes_2487(t *testing.T) {
+	type args struct {
+		head *ListNode
+	}
+	list1 := CreateList([]int{5, 2, 13, 3, 8})
+	list1Answer := CreateList([]int{13, 8})
+
+	list2 := CreateList([]int{1, 1, 1, 1})
+	list2Answer := CreateList([]int{1, 1, 1, 1})
+	tests := []struct {
+		args args
+		want *ListNode
+	}{
+		{args: args{head: list1}, want: list1Answer},
+		{args: args{head: list2}, want: list2Answer},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := removeNodes_2487(tt.args.head); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("removeNodes_2487() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

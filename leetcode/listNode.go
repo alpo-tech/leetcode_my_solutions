@@ -547,7 +547,6 @@ func modifiedList_3217(nums []int, head *ListNode) *ListNode {
 		dictNums[val] = true
 	}
 
-
 	for {
 		if head == nil {
 			return nil
@@ -561,7 +560,6 @@ func modifiedList_3217(nums []int, head *ListNode) *ListNode {
 		break
 	}
 
-
 	previous := head
 	first := head.Next
 	head.Next = nil
@@ -573,11 +571,61 @@ func modifiedList_3217(nums []int, head *ListNode) *ListNode {
 			first = first.Next
 			previous.Next = nil
 		} else {
-		  first = first.Next
+			first = first.Next
 		}
 	}
 
-
 	return head
 
+}
+
+func removeNodes_2487(head *ListNode) *ListNode {
+
+	array := make([]int, 0)
+
+	iter := head
+	for iter != nil {
+		array = append(array, iter.Val)
+		iter = iter.Next
+	}
+
+	max := 0
+	for i := len(array) - 1; i >= 0; i-- {
+		if max < array[i] {
+			max = array[i]
+		}
+
+		array[i] = max
+	}
+
+	first := head
+
+	checkMax := func(head *ListNode, count int) bool {
+		return head.Val < array[count]
+	}
+
+	count := 1
+	for head != nil {
+		if !checkMax(head, count) {
+			break
+		}
+		head = head.Next
+		count++
+	}
+
+	first = head.Next
+	previous := head
+	for first != nil {
+		if !checkMax(first, count) {
+			previous.Next = first
+			first = first.Next
+			previous = previous.Next
+			previous.Next = nil
+		} else {
+			first = first.Next
+		}
+		count++
+	}
+
+	return head
 }
