@@ -184,3 +184,29 @@ func Test_removeNodes_2487(t *testing.T) {
 		})
 	}
 }
+
+func Test_mergeNodes_2181(t *testing.T) {
+	type args struct {
+		head *ListNode
+	}
+
+	list1 := CreateList([]int{0, 3, 1, 0, 4, 5, 2, 0})
+	list1Answer := CreateList([]int{4, 11})
+
+	list2 := CreateList([]int{0, 1, 0, 3, 0, 2, 2, 0})
+	list2Answer := CreateList([]int{1, 3, 4})
+	tests := []struct {
+		args args
+		want *ListNode
+	}{
+		{args: args{list1}, want: list1Answer},
+		{args: args{list2}, want: list2Answer},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := mergeNodes_2181(tt.args.head); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("mergeNodes_2181() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

@@ -629,3 +629,26 @@ func removeNodes_2487(head *ListNode) *ListNode {
 
 	return head
 }
+
+func mergeNodes_2181(head *ListNode) *ListNode {
+	previos := &ListNode{}
+	first := head
+	result := previos
+	for first != nil {
+		if first.Val != 0 {
+			previos.Next = first
+			summa := 0
+			for first.Val != 0 {
+				summa += first.Val
+				first = first.Next
+			}
+			previos.Next.Val = summa
+			previos = previos.Next
+			previos.Next = nil
+			first = first.Next
+		} else {
+			first = first.Next
+		}
+	}
+	return result.Next
+}
