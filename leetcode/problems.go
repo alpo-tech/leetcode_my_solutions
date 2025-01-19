@@ -1497,3 +1497,20 @@ func findErrorNums_645(nums []int) []int {
 	return []int{twiceValue, noValue}
 
 }
+
+func moveZeroes_283(nums []int) {
+
+	valueIndex := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != 0 {
+			nums[valueIndex] = nums[i]
+			valueIndex++
+		} 
+	}
+
+	for i := valueIndex; i < len(nums); i++ {
+		nums[i] = 0
+	}
+
+
+}

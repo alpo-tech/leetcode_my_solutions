@@ -691,3 +691,22 @@ func Test_findErrorNums_645(t *testing.T) {
 		})
 	}
 }
+
+func Test_moveZeroes_283(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		// TODOname: Add test cases.
+		{args: args{[]int{0, 1, 0, 3, 12}}, want: []int{1, 3, 12, 0, 0}},
+		{args: args{[]int{0}}, want: []int{0}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			moveZeroes_283(tt.args.nums)
+		})
+	}
+}
