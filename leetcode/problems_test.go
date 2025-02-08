@@ -710,3 +710,23 @@ func Test_moveZeroes_283(t *testing.T) {
 		})
 	}
 }
+
+func Test_mergeAlternately_1768(t *testing.T) {
+	type args struct {
+		word1 string
+		word2 string
+	}
+	tests := []struct {
+		args args
+		want string
+	}{
+		{args: args{"abc", "pqr"}, want: "apbqcr"},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := mergeAlternately_1768(tt.args.word1, tt.args.word2); got != tt.want {
+				t.Errorf("mergeAlternately_1768() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

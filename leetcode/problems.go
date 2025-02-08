@@ -1514,3 +1514,32 @@ func moveZeroes_283(nums []int) {
 
 
 }
+
+
+func mergeAlternately_1768(word1 string, word2 string) string {
+	resutl := make([]byte, len(word1) + len(word2))
+
+	i, j, k := 0, 0, 0
+
+	for i < len(word1) && j < len(word2) {
+		resutl[k] = word1[i]
+		k++
+		i++
+		resutl[k] = word2[j]
+		k++
+		j++
+	}
+
+	for i < len(word1) {
+		resutl[k] = word1[i]
+		k++
+		i++
+	}
+
+	for j < len(word2) {
+		resutl[k] = word2[j]
+		k++
+		j++
+	}
+	return string(resutl)
+}
