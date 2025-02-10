@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -1505,19 +1506,62 @@ func moveZeroes_283(nums []int) {
 		if nums[i] != 0 {
 			nums[valueIndex] = nums[i]
 			valueIndex++
-		} 
+		}
 	}
 
 	for i := valueIndex; i < len(nums); i++ {
 		nums[i] = 0
 	}
 
-
 }
 
+func increasingTriplet(nums []int) bool {
+	second := math.MaxInt32
+	first := math.MaxInt32
+
+	for i := 0; i < len(nums); i++ {
+		if first >= nums[i] {
+			first = nums[i]
+		} else if second >= nums[i] {
+			second = nums[i]
+		} else {
+			return true
+		}
+	}
+
+	return false
+}
+
+func productExceptSelf(nums []int) []int {
+	result := make([]int, len(nums))
+	multiplication := 1
+	countZero := 0
+	tmp := 1
+
+	for _, v := range nums {
+		if v == 0 {
+			countZero++
+		} else {
+			tmp *= v
+		}
+		multiplication *= v
+	}
+
+	for i, v := range nums {
+		if v != 0 {
+			result[i] = multiplication / v
+		} else if v == 0 && countZero < 2 {
+			result[i] = tmp
+		} else {
+			result[i] = 0
+		}
+	}
+
+	return result
+}
 
 func mergeAlternately_1768(word1 string, word2 string) string {
-	resutl := make([]byte, len(word1) + len(word2))
+	resutl := make([]byte, len(word1)+len(word2))
 
 	i, j, k := 0, 0, 0
 

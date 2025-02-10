@@ -730,3 +730,44 @@ func Test_mergeAlternately_1768(t *testing.T) {
 		})
 	}
 }
+
+func Test_productExceptSelf(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want []int
+	}{
+		{args: args{[]int{1, 2, 3, 4}}, want: []int{24, 12, 8, 6}},
+		{args: args{[]int{-1, 1, 0, -3, 3}}, want: []int{0, 0, 9, 0, 0}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := productExceptSelf(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("productExceptSelf() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_increasingTriplet(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		args args
+		want bool
+	}{
+		{args: args{[]int{1, 2, 3, 4, 5}}, want: true},
+		{args: args{[]int{5, 4, 3, 2, 1}}, want: false},
+		{args: args{[]int{2, 1, 5, 0, 4, 6}}, want: true},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := increasingTriplet(tt.args.nums); got != tt.want {
+				t.Errorf("increasingTriplet() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
