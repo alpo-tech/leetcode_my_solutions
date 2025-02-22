@@ -179,14 +179,14 @@ func (c *LRUCache) Get(key int) int {
 	if !ok {
 		return -1
 	}
-	c.update(node.key)
+	c.update(node.key, node.val)
 	return node.val
 }
 
 func (c *LRUCache) Put(key int, value int) {
 	_, ok := c.Mp[key]
 	if ok {
-		c.update(key)
+		c.update(key, value)
 		return
 	}
 	if c.size == c.cap {
@@ -200,23 +200,25 @@ func (c *LRUCache) remove(key int) {
 	c.size--
 }
 
-func (c *LRUCache) update(key int) {
+func (c *LRUCache) update(key int, value int) {
 	if c.head == c.tail {
+		c.head.val = value
 		return
 	}
 	node := c.Mp[key]
 	if node == c.head {
+		c.head.val = value
 		return
 	}
 
 	if node == c.tail {
-		c.PrintCache()
 		c.tail = node.prev
 		c.tail.next = nil
 		node.next = c.head
 		c.head.prev = node
 		c.head = node
 		c.head.prev = nil
+		c.head.val = value
 		return
 	}
 
@@ -226,6 +228,7 @@ func (c *LRUCache) update(key int) {
 	node.next = c.head
 	node.prev = nil
 	c.head = node
+	c.head.val = value
 }
 
 func (c *LRUCache) insert(key, value int) {

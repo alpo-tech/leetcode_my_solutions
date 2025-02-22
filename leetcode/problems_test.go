@@ -771,3 +771,23 @@ func Test_increasingTriplet(t *testing.T) {
 		})
 	}
 }
+
+func Test_largesAltitude(t *testing.T) {
+	type args struct {
+		gain []int
+	}
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args: args{[]int{-5, 1, 5, 0, -7}}, want: 1},
+		{args: args{[]int{-4, -3, -2, -1, 4, 3, 2}}, want: 0},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := largesAltitude(tt.args.gain); got != tt.want {
+				t.Errorf("largesAltitude() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

@@ -1587,3 +1587,17 @@ func mergeAlternately_1768(word1 string, word2 string) string {
 	}
 	return string(resutl)
 }
+
+func largesAltitude(gain []int) int {
+	max := 0
+	tmp := max
+
+	for _, value := range gain {
+		tmp += value 
+		if tmp > max {
+			max = tmp
+		}
+	}
+
+	return max
+}
