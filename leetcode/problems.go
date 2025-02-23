@@ -1593,11 +1593,29 @@ func largesAltitude(gain []int) int {
 	tmp := max
 
 	for _, value := range gain {
-		tmp += value 
+		tmp += value
 		if tmp > max {
 			max = tmp
 		}
 	}
 
 	return max
+}
+
+func pivotIndex(nums []int) int {
+	sum := 0
+	for _, val := range nums {
+		sum += val
+	}
+
+	summa_left := 0
+	for i := 0; i < len(nums); i++ {
+		summa_right := sum - summa_left - nums[i]
+		if summa_right == summa_left {
+			return i
+		}
+		summa_left += nums[i]
+	}
+
+	return -1
 }
