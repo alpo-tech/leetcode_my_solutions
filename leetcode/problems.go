@@ -1621,16 +1621,16 @@ func pivotIndex(nums []int) int {
 }
 
 func equalPairs(grid [][]int) int {
-	
+
 	count := 0
-	
-	getSumCol := func (grid [][]int,arr []int) int {
+
+	getSumCol := func(grid [][]int, arr []int) int {
 		count := 0
 		for j := 0; j < len(grid); j++ {
 			flag := true
 			for i := 0; i < len(grid); i++ {
 				if grid[i][j] != arr[i] {
-					flag = false 
+					flag = false
 					break
 				}
 			}
@@ -1641,9 +1641,11 @@ func equalPairs(grid [][]int) int {
 		return count
 	}
 
-	for i:=0; i < len(grid); i++ {
+	for i := 0; i < len(grid); i++ {
 		count += getSumCol(grid, grid[i])
 	}
 
-	return count 
+	return count
 }
+
+
