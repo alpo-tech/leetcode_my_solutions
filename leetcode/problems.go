@@ -1647,5 +1647,3 @@ func equalPairs(grid [][]int) int {
 
 	return count
 }
-
-
