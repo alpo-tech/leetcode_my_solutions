@@ -833,3 +833,44 @@ func Test_equalPairs(t *testing.T) {
 		})
 	}
 }
+
+func Test_decodeString(t *testing.T) {
+	type args struct {
+		s string
+	}
+	tests := []struct {
+		args args
+		want string
+	}{
+		{args: args{"3[a]2[bc]"}, want: "aaabcbc"},
+		{args: args{"3[a2[c]]"}, want: "accaccacc"},
+		{args: args{"2[abc]3[cd]ef"}, want: "abcabccdcdcdef"},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			if got := decodeString(tt.args.s); got != tt.want {
+				t.Errorf("decodeString() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_reverseString(t *testing.T) {
+	type args struct {
+		s []byte
+	}
+	tests := []struct {
+		args args
+		want []byte
+	}{
+		{args: args{[]byte{'h', 'e', 'l', 'l', 'o'}}, want: []byte{'o', 'l', 'l', 'e', 'h'}},
+	}
+	for _, tt := range tests {
+		t.Run("", func(t *testing.T) {
+			reverseString(tt.args.s)
+			if !reflect.DeepEqual(tt.want, tt.args.s) {
+				t.Errorf("reverseString() = %v, want %v", tt.args.s, tt.want)
+			}
+		})
+	}
+}

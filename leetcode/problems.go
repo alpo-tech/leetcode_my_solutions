@@ -484,14 +484,18 @@ func ReverseParentheses(s string) string {
 	var top []byte
 	stack = append(stack, []byte{}) // Initial segment in case we have any before the first parentheses
 	for i := 0; i < len(s); i++ {
-		if s[i] == '(' { // start the next segment
+		switch s[i] {
+		case '(':
 			stack = append(stack, []byte{})
-		} else if s[i] == ')' { // end of a segment; pop it, reverse it, and append it to the previous segment
+			continue
+		case ')':
 			top, stack = stack[len(stack)-1], stack[:len(stack)-1]
 			rev(top)
 			stack[len(stack)-1] = append(stack[len(stack)-1], top...)
-		} else { // append to current segment
+			continue
+		default:
 			stack[len(stack)-1] = append(stack[len(stack)-1], s[i])
+
 		}
 	}
 	return string(stack[0])
@@ -1646,4 +1650,67 @@ func equalPairs(grid [][]int) int {
 	}
 
 	return count
+}
+
+func decodeString(s string) string {
+	newString := make([]byte, 0)
+	myAtoi := func(s string) (int, int) {
+		number, count := 0, 0
+		for i := 0; s[i] < '['; i++ {
+			count++
+		}
+		number, err := strconv.Atoi(s[:count])
+		if err != nil {
+			fmt.Println(err)
+		}
+		return number, count
+	}
+
+	mySep := func(s string) string {
+		mstr := make([]byte, 0)
+		for i := 0; s[i] != ']'; i++ {
+			mstr = append(mstr, s[i])
+		}
+		return string(mstr)
+	}
+	for i := 0; i < len(s); i++ {
+		switch s[i] {
+		case '1', '2', '3', '4', '5', '6', '7', '8', '9':
+			number, count := myAtoi(s[i:])
+			mstr := mySep(s[i+count:])
+			for number > 0 {
+				newString = append(newString, []byte(mstr)...)
+				number--
+			}
+			i += count + len(mstr) + 1
+		default:
+			newString = append(newString, s[i])
+		}
+	}
+	return string(newString)
+}
+
+func gcdOfStrings(str1, str2 string) string {
+	if str1+str2 != str2+str1 {
+		return ""
+	}
+
+	a := len(str1)
+	b := len(str2)
+
+	if a < b {
+		a, b = b, a
+	}
+
+	for b > 0 {
+		a, b = b, a%b
+	}
+
+	return str1[:a]
+}
+
+func reverseString(s []byte) {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
 }
